@@ -1,0 +1,67 @@
+<html>
+	<style type="text/css">
+		table.clean {
+		border-spacing: 0px;
+		border-collapse: collapse;
+		}
+		
+		table.clean td {
+		border: none;
+		border-spacing: 0px;
+		padding-right: 0px;
+		padding-left: 0px;
+		font-size: 60%;
+		}
+		
+		table.clean tr {
+		padding: 0px;
+		border: none;
+		}	
+		
+		table.progress {
+		border: none 0px;
+		border-color: gray;
+		border-spacing: 0px;
+		border-style: inset;
+		border-collapse: collapse;
+		width: 600;
+		height: 20;
+		}
+		
+		table.progress td.resolvidos {
+		background-color: #00ff00;
+		border-width: 0px;
+		}
+		
+		table.progress td.fazendo {
+		background-color: #f55;
+		border-width: 0px;
+		}
+		
+		table.progress td.afazer {
+		background-color: #ccc;
+		border-width: 0px;
+		}
+	</style>
+	<body>
+		<div id="progress" align=center>
+			<table class="clean">
+				<tbody>
+					<tr>
+						<td>
+							<table class="progress">
+								<tbody>
+									<tr>
+										<td class="resolvidos" width=90%></td>
+										<td class="fazendo" width=5%></td>
+										<td class="afazer" width=5%></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script src="../Templates/amcharts.js" type="text/javascript"></script>         
+        <script type="text/javascript">
+            var chart;
+
+            var chartData = [{
+                tipo: "Submeteram certo",
+                alunos: {{ certas }},
+                color: "#00BF00"
+            }, {
+                tipo: "Submeteram errado",
+                alunos: {{ erradas }},
+                color: "#E30B0B"
+            }, {
+                tipo: "Não submeteram",
+                alunos: {{ num_nao_fizeram }},
+                color: "#9C9C9C"
+            }];
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "tipo";
+                chart.startDuration = 0;
+                chart.depth3D = 40;
+                chart.angle = 28;
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.labelRotation = 0; // this line makes category values to be rotated
+                categoryAxis.gridAlpha = 0;
+                categoryAxis.fillAlpha = 1;
+                categoryAxis.fillColor = "#FAFAFA";
+                categoryAxis.gridPosition = "start";
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.dashLength = 5;
+                valueAxis.title = "Alunos"
+                valueAxis.axisAlpha = 0;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.valueField = "alunos";
+                graph.colorField = "color";
+                graph.balloonText = "[[category]]: [[value]]";
+                graph.type = "column";
+                graph.lineAlpha = 0;
+                graph.fillAlphas = 1;
+                chart.addGraph(graph);
+
+                // WRITE
+                chart.write("chartdiv");
+            });
+        </script>
+    </head>
+    <body>
+		<div align="center">
+			<table>
+				<td align ="center">
+					<div id="chartdiv" style="width: 800px; height: 500px;"></div>
+				</td>
+			</table>
+		<br>
+			<table width='100%' border="1px">
+				<tr>
+					<td valign="top" align="left">
+						<h3><p align="center" class='helvetica'>Submeteram certo</p></h3>
+						{% for elemento in sumario1 %}
+							<p class='helvetica' style='line-height:8px; font-size:18px;'>&nbsp;-
+							<a title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#00BF00; font-weight:bold; text-decoration: none;'>{{ alunos[elemento][3] }}</a>
+						{% endfor %}
+						<br>
+					</td>
+					<td valign="top" align ="left">
+							<h3><p align="center" class='helvetica'>Submeteram errado</p></h3>
+						{% for elemento in sumario3 %}
+							<p class='helvetica' style='line-height:5px; font-size:18px;'>&nbsp;-
+							<a title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#FF0000; font-weight:bold; text-decoration: none;'>{{ alunos[elemento][3] }}</a>
+						{% endfor %}
+						<br>
+					</td>
+					<td valign="top" align ="left">
+							<h3><p align="center" class='helvetica'>Não submeteram</p></h3>
+						{% for elemento in sumario5 %}
+							<p class='helvetica' style='line-height:5px; font-size:18px;'>&nbsp;-
+							<a title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#757575; font-weight:bold; text-decoration: none;'>{{ alunos[elemento][3] }}</a>
+						{% endfor %}
+						<br>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

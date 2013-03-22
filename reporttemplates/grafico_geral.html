@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+
+		google.load('visualization', '1.0', {'packages':['corechart']});
+
+		google.setOnLoadCallback(drawChart);
+		
+		function drawChart() {
+
+		var data = new google.visualization.DataTable();
+			data.addColumn('string', 'matricula');
+			data.addColumn('number', 'Certas');
+			data.addColumn('number', 'Erradas');
+			data.addRows({{coordenadas}}		 
+			);
+
+		var options = {'title':'Submissões',
+			'width':700,
+			'height':500,
+			colors:['#ADFF2F','#DC143C'],
+			'isStacked': true};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('{{matricula_aluno}}'));
+			chart.draw(data, options);
+			}
+		</script>
+	<head>
+<html>

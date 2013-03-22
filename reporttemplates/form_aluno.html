@@ -1,0 +1,34 @@
+<html>
+	<style>
+		p.helvetica{font-family:Arial, Helvetica, sans-serif;}
+	</style>
+	<body>
+	<div align="center">
+		<table>
+			<br><form>
+			<tr>
+				<td>
+					<p class='helvetica'>Data Inicial:
+					<input type='input' name='data' value='' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class='helvetica'>Data Final:<span style='padding-left:6px'>
+					<input type='input' name='df' value='' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class='helvetica'>Questões:<span style='padding-left:12px'>
+					<input type='input' name='questoes' value=''>&nbsp;(Separadas por vírgula)</span>
+				</td>
+			</tr></br>
+		</table>
+	<div style='margin-right:125px'>
+		<input type='hidden' name='matriculas' value='{{aluno}}'>
+		<p class="helvetica"><input type='submit' value='Enviar'>
+		<input type ="reset" value="Limpar"></p></div></div>
+	</form>	
+	</body>
+</html>

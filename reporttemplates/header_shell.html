@@ -1,0 +1,21 @@
+<head>
+<title></title>
+<script type="text/JavaScript">
+function loadXMLDoc()
+{
+var xmlhttp;
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function()
+  {
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+    document.getElementById("ajax_replace").innerHTML=xmlhttp.responseText;
+    setTimeout("loadXMLDoc()", 10*1000);
+    }
+  }
+xmlhttp.open("GET","ajax1?matriculas={{matricula}}&data={{data}}&df={{df}}",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<div id="studentquestions"></div>

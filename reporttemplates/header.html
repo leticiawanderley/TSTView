@@ -1,0 +1,31 @@
+<html>
+	<style type="text/css">
+		h3 {font-size:14px}
+		h4 {font-size:16px}
+		p.helvetica{font-family:Arial, Helvetica, sans-serif;}
+		table.mytable {table-layout: fixed; width: 75%}
+	</style>
+	<body>
+		<table width="{{tamanho}}" border="0"><col width="325">
+		<tr>
+			<td><h4><p class="helvetica"><span style='padding-left:70px'>{{cabecalho}}</span></p></h4>
+			<h3><p class="helvetica"><span style='padding-left:70px'>{{media}}</span></p></h3>
+			<h3><p class="helvetica"><span style='padding-left:70px'>{{intervalo}}</span></p></h3>
+		</tr>
+		</table>
+		{% if not ehturma %}
+			<table class="mytable">
+				<tr><td width="210"><h3><p class="helvetica"><span style='padding-left:70px'>Questões certas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px">{{q_certas}}</p></td></tr>
+				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões erradas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px">{{q_erradas}}</p></td></tr>
+				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões não tentadas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px">{{porfazer}}</p></td></tr>
+			</table><br>
+		{% endif %}
+	</body>
+</html>
+	

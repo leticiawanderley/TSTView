@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+
+		google.load('visualization', '1.0', {'packages':['corechart']});
+
+		google.setOnLoadCallback(drawChart);
+		
+		function drawChart() {
+
+		var data = new google.visualization.DataTable();
+			data.addColumn('string', 'matricula');
+			data.addColumn('number', 'Certas');
+			data.addColumn('number', 'Erradas');
+			data.addRows( {{coordenadas}}		 
+			);
+
+		var options = {'title':'Submissões',
+			'width':700,
+			'height':500,
+			colors:['#ADFF2F','#DC143C'],
+			'isStacked': true};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('{{matricula_aluno}}'));
+			chart.draw(data, options);
+			}
+												
+		function {{iden}}() {
+			var ele = document.getElementById("{{iden}}");
+			var text = document.getElementById("{{div}}");
+			if(ele.style.visibility == "hidden") {
+				ele.style.visibility = "visible";
+				text.innerHTML = "Hide Chart";
+				}
+			else {
+				ele.style.visibility = "hidden";
+				text.innerHTML = "Show Chart";
+				}
+			}
+		</script>
+	</head>
+	<style>
+		h3 {font-size:14px}
+		p.monospace{font-family:"Courier New", Courier, monospace;}
+		td
+		{vertical-align:top;}
+	</style>
+	<body>
+		<table width="{{tamanho}}" border="0">
+		<tr>
+		<td align ="left">
+			{% for aluno_turma in turma %}
+				<h3><p class="monospace" style="line-height: 1px; display:inline-block"><span style='padding-left:70px'>
+				<a href='/report?matriculas={{aluno_turma}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
+				style="color:blue; font-weight:100">{{aluno_turma}} {{nomes[aluno_turma][3]}}</a></p></h3></span>
+			{% endfor %}
+		</td>
+		<td align="center">
+			<h3><p class="helvetica">
+			<a id="{{div}}" href="javascript:{{iden}}()" class="monospace" style="color:orange">Hide Chart</a></p></h3>
+			<div id="{{iden}}" style="display: visible">
+			<div id="{{matricula_aluno}}" style="display:table-cell"></div></div>
+		</td></tr></table>
+	</body>
+</html>

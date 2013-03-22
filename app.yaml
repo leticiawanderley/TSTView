@@ -1,0 +1,29 @@
+application: tstview
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /report
+  script: report.app
+
+- url: /static/javascript/refreshdata.js
+  static_files: static/javascript/refreshdata.js
+  upload: static/javascript/refreshdata.js
+
+- url: /static/javascript/scroller.js
+  static_files: static/javascript/scroller.js
+  upload: static/javascript/scroller.js
+
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+  
+- url: /.*
+  script: console.app
+  
+libraries:
+- name: jinja2
+  version: latest
