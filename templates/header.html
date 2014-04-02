@@ -1,0 +1,47 @@
+<html>
+	<style type="text/css">
+		h3 {font-size:14px}
+		h4 {font-size:16px}
+		p.helvetica{font-family:Arial, Helvetica, sans-serif;}
+		table.mytable {table-layout: fixed; width: 100%}
+		div.diagnostico {border:0px; padding:10px 40px; width:300px; border-radius:25px;}
+	</style>
+	<body>
+		<h1><p class="helvetica">Relatório de submissões</h1></p>
+		<table width="{{tamanho}}" border="0"><col width="325">
+		<tr>
+			<td><h4><p class="helvetica"><span style='padding-left:70px'>{{cabecalho[0]}}</span></p></h4>
+			{% if not ehturma %}
+				<h3><p class="helvetica"><span style='padding-left:70px'>{{cabecalho[1]}}</span></p></h3>
+				<h3><p class="helvetica"><span style='padding-left:70px'>{{cabecalho[2]}}</span></p></h3>
+			{% endif %}
+			<h3><p class="helvetica"><span style='padding-left:70px'>{{media}}</span></p></h3>
+			<h3><p class="helvetica"><span style='padding-left:70px'>{{intervalo}}</span></p></h3>
+		{% if not ehturma%}
+			
+		{% endif %}
+		</tr>
+		</table>
+		{% if not ehturma %}
+			<table class="mytable">
+				<tr><td width="250"><h3><p class="helvetica"><span style='padding-left:70px'>Questões certas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px"><br>{{q_certas}}</p></td>	
+				<td  width="600"><div class="diagnostico"><h3><p class="helvetica">Questões mais submetidas...</p></h3>
+				<p class="helvetica" style="font-size: 13px"><b><span title="Sem sucesso">SS: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:27px'>{{top_aluno}}<br>
+				<b><span title="Pela turma e erradas pelo aluno">PTEA: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:10px'>{{done}}<br>
+				<b><span title="Pela turma e não enviadas pelo aluno">PTNTA: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:4px'>{{not_done}}<br>
+				<b><span title="Pela turma e não enviadas ou erradas pelo aluno">PTNEE: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:4px'>{{merge}}</p></div></td></tr>
+				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões erradas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px"><br>{{q_erradas}}</p></td></tr>
+				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões não tentadas:</span></p></h3></td>
+				<td width="600">
+				<p class="helvetica" style="font-size: 13px"><br>{{porfazer}}</p></td>
+			
+				</tr>
+			</table><br>
+		{% endif %}
+	</body>
+</html>
+	

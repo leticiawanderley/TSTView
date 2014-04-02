@@ -9,26 +9,25 @@
 			<tr>
 				<td>
 					<p class='helvetica'>Data Inicial:
-					<input type='input' name='data' value='' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+					<input type='input' name='data' value="{{data_inicial}}" MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<p class='helvetica'>Data Final:<span style='padding-left:6px'>
-					<input type='input' name='df' value='' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+					<input type='input' name='df' value="{{data_final}}" MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<p class='helvetica'>Questões:<span style='padding-left:12px'>
-					<input type='input' name='questoes' value=''>&nbsp;(Separadas por vírgula)</span>
+					<input type='input' name='questoes' value="{{questoes}}">&nbsp;(Separadas por vírgula)</span>
 				</td>
 			</tr></br>
 		</table>
 	<div style='margin-right:125px'>
 		<input type='hidden' name='matriculas' value='{{aluno}}'>
-		<p class="helvetica"><input type='submit' value='Enviar'>
-		<input type ="reset" value="Limpar"></p></div></div>
+		<span style='padding-left:15px'><p class="helvetica"><input type='submit' value='Enviar'></p></span></div></div>
 	</form>	
 	</body>
 </html>

@@ -1,0 +1,110 @@
+<html>
+	<style type="text/css">
+		h1 {font-size:16px;text-align:left}
+		h2 {font-size:14px;}
+		p.monospace{font-family:"Courier New", Courier, monospace; font-weight:normal;}
+		p.helvetica{font-family:Arial, Helvetica, sans-serif; font-weight:normal;}
+		table.nomes {
+			table-layout:auto; 
+			width:60%; 
+			border: 0px solid #CCC; 
+			font-family: Arial, Helvetica, sans-serif;	
+			font-size: 14.5px;
+		} 
+	</style>
+	<head>
+		<title>Report</title>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"></link>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+		<script>
+		  $(function() {
+		    var Turmas = [
+		      "TP1",
+		      "TP2",
+		      "TP3",
+		      "TP4",
+		      "TP5",
+		      "TT1",
+		      "TT2",
+		      "TT3",
+		    ];
+		    
+		    $( "#turmas" ).autocomplete({
+		      source: Turmas
+		    });
+		  });
+	  </script>
+	</head>
+	<body>
+		<div align="center">
+		<table>
+			<br><form name='input' action='' method='get'>
+			<tr>
+			<td>
+				<b><p class='helvetica'>Parâmetros:</b></span></p>	
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class='helvetica'>Aluno:<span style='padding-left:37px'>
+				<input id='turmas' type='input' name='matriculas' value='{{mat}}'>&nbsp;</span>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class='helvetica'>Data Inicial:
+				<input type='input' name='data' value='{{data}}' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class='helvetica'>Data Final:<span style='padding-left:6px'>
+				<input type='input' name='df' value='{{df}}' MAXLENGTH="8">&nbsp;(Formato: DDMMAAAA)</span>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class='helvetica'>Questões:<span style='padding-left:12px'>
+				<input type='input' name='questoes' value='{{questoes}}'>&nbsp;(Separadas por vírgula)</span>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class = "helvetica"><input type='checkbox' name='dia' value='{{dia}}' align="right">Dia</p>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p class = "helvetica"><input type='checkbox' name='semana' value='{{semana}}'>Semana</p>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<div style='margin-left:170px'>
+			<p class="helvetica"><input type='submit' value='Enviar'>
+			</p></div>
+		</form></td></tr></table></div><br>
+		
+		<div align="center">
+		<table class="nomes"><col width="300">
+		<tr>
+			<td align="left" width="50%">
+				{% for matricula in matriculas.keys()[:count] %}
+					<h1><p class="helvetica" style="line-height: 14px">
+					<a href='/report?matriculas={{matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
+					style="vertical-align:top;color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matriculas[matricula].name}}</a></p></h1>
+				{% endfor %}
+				</td>
+				<td align="left" width="50%"><br>
+				{% for matricula in matriculas.keys()[count:] %}
+					<h1><p class="helvetica" style="line-height: 14px">
+					<a href='/report?matriculas={{matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
+					style="vertical-align:top; color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matriculas[matricula].name}}</a></p></h1>
+				{% endfor %}						
+			</td>
+		</tr>
+		</table>
+		</div>
+	</body>
+</html>

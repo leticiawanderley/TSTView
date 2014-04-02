@@ -1,6 +1,4 @@
-<html>
-	<head>
-	<title> Console: Gráfico por questão </title>
+<head>
 		<style type="text/css">
 			table.mytable {
 			table-layout: fixed;
@@ -17,21 +15,23 @@
 		   	border: 1px solid #ccc;
 		   	}
 		</style>
+	<title> Console: Grafico por questao </title>
+		
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});
 			google.setOnLoadCallback(drawChart);
 			function drawChart() {
 			var data = google.visualization.arrayToDataTable([
-				['Questao', 'Certas', 'Erradas', 'Não submeteram'],
+				['Questão', 'Certas', 'Erradas', 'Não submeteram'],
 				['', {{ certas }}, {{ erradas }}, {{ num_nao_fizeram }}],
-				]);
+			]);
 
 			var options = {
 				title: 'Questão {{ questao_sumarizada }}',
 				colors:['#00BF00','#E30B0B','#9C9C9C'],
 				vAxis: {title: 'Qtd. Alunos'}
-							};
+			};
 
 			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
@@ -50,27 +50,26 @@
 				<dl><dd><tr>
 					<td valign="top" align="left">
 						<h3><p align="center" class='helvetica'>Submeteram certo</p></h3>
-						{% for elemento in sumario1 %}
+						{% for aluno in fizeram_certo %}
 							&nbsp;<img src="http://cdn1.iconfinder.com/data/icons/splashyIcons/arrow_state_grey_right.png">
-							<a class='helvetica' title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#00BF00; font-weight:bold; font-size:18px; text-decoration: none;'>{{ alunos[elemento][3] }}</a><p>
+							<a class='helvetica' title="Matrícula: {{ aluno.matricula }}. TT{{ aluno.tt }}, TP{{ aluno.tt }}" href='/report?data={{ data_report }}&df={{ dataf_report }}&matriculas={{ aluno.matricula }}' style='color:#00BF00; font-weight:bold; font-size:18px; text-decoration: none;'>{{ aluno.name }}</a><p>
 						{% endfor %}
 					</td>
 					<td valign="top" align ="left">
 							<h3><p align="center" class='helvetica'>Submeteram errado</p></h3>
-						{% for elemento in sumario3 %}
+						{% for aluno in fizeram_errado %}
 							&nbsp;<img src="http://cdn1.iconfinder.com/data/icons/splashyIcons/arrow_state_grey_right.png">
-							<a class='helvetica' title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#E30B0B; font-weight:bold; font-size:18px; text-decoration: none;'>{{ alunos[elemento][3] }}</a><p>
+							<a class='helvetica' title="Matrícula: {{ aluno.matricula }}. TT{{ aluno.tt }}, TP{{ aluno.tt }}" href='/report?data={{ data_report }}&df={{ dataf_report }}&matriculas={{ aluno.matricula }}' style='color:#E30B0B; font-weight:bold; font-size:18px; text-decoration: none;'>{{ aluno.name }}</a><p>
 						{% endfor %}
 					</td>
 					<td valign="top" align ="left">
 							<h3><p align="center" class='helvetica'>Não submeteram</p></h3>
-						{% for elemento in sumario5 %}
+						{% for aluno in nao_fizeram %}
 							&nbsp;<img src="http://cdn1.iconfinder.com/data/icons/splashyIcons/arrow_state_grey_right.png">
-							<a class='helvetica' title="Matricula: {{ elemento }}. TT{{ alunos[elemento][1] }}, TP{{ alunos[elemento][2] }}" href='/report?data={{ datainicio }}&df={{ df }}&matriculas={{ elemento }}' style='color:#9C9C9C; font-weight:bold; font-size:18px; text-decoration: none;'>{{ alunos[elemento][3] }}</a><p>
+							<a class='helvetica' title="Matrícula: {{ aluno.matricula }}. TT{{ aluno.tt }}, TP{{ aluno.tt }}" href='/report?data={{ data_report }}&df={{ dataf_report }}&matriculas={{ aluno.matricula }}' style='color:#9C9C9C; font-weight:bold; font-size:18px; text-decoration: none;'>{{ aluno.name }}</a><p>
 						{% endfor %}
 					</td>
 				</tr></dd></dl>
 			</table>
 		</div>
 	</body>
-</html>

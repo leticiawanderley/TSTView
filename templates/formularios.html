@@ -1,0 +1,125 @@
+	<head>
+	<style type="text/css">
+		h4 {font-size:20px;}
+		h3 {font-size:17px;}
+		p.helvetica{font-family:Arial, Helvetica, sans-serif;}
+		p.monospace {font-family: monospace;}
+		
+		table.table {table-layout: fixed; 
+					   border: 1px solid #CCC;
+					   font-family: Arial, Helvetica, sans-serif;	
+					   font-size: 14px;} 
+		
+		.table td {white-space:normal; 
+					 padding: 0px;
+					 margin: 0px;
+					 border: 0px solid #ccc;}
+	</style>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"></link>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script> 
+		<script src="jquery.maskedinput.js" type="text/javascript"></script>
+
+		<script>
+  $(function() {
+
+    var Turmas = [
+      "TP1",
+      "TP2",
+      "TP3",
+      "TP4",
+      "TP5",
+      "TT1",
+      "TT2",
+      "TT3",
+    ];
+    
+    var Slots = [
+    "0800",
+    "1000",
+    "1200",
+    "1400",
+    "1600",
+    "1800",
+    ];
+    $( "#turmas" ).autocomplete({
+      source: Turmas
+    });
+    
+    $( "#slots" ).autocomplete({
+      source: Slots
+    });
+    
+    $( "#slots2" ).autocomplete({
+      source: Slots
+    });
+  });
+  </script>
+	</head>
+	<body>
+		<div class="ui-widget">
+		<div align='center'><br>
+		<table class='table'>
+			<form name='input' action='{{action}}' method='get' autocomplete="off">
+				<td>
+					<p class='helvetica' for="tags" title="Sequência de matrículas separadas por virgula. Ex: 112110047,112110048"><b>Turma:</b>
+				</td>	
+				<td>
+						<input id="turmas" type='input' name='trm' value='{{turma}}' title="Sequência de matrículas separadas por virgula. Ex: 112110047,112110048"><br>
+				</td>
+					<tr>
+						<td width="100">
+								<p class='helvetica' title="Formato: DDMMAAAA"><b>Data Inicial:</b>
+							<td>
+								<input type='input' name='di' value='{{datainicio}}' MAXLENGTH="8" title="Formato: DDMMAAAA"><br>
+							</td>
+							<td width="20"></td>
+						</td>
+						<td width="100">
+							<p class='helvetica' title="Formato: HHMM"><b>Hora Inicial:</b>
+							<td>
+								<input id="slots" type='input' name='hi' value='{{horainicio}}' MAXLENGTH="4" title="Formato: HHMM"><br>
+							</td>
+						</td>
+					<tr>
+						<td width="100">
+							<p class='helvetica' title="Formato: DDMMAAAA"><b>Data Final:</b>
+						<td>
+							<input id='data' type='input' name='df' value='{{datafim}}' MAXLENGTH="8" title="Formato: DDMMAAAAHHMM"><br>
+						</td>
+							<td width="20"></td>
+						</td>
+						<td width="100">
+							<p class='helvetica' title="Formato: HHMM"><b>Hora Final:</b>
+							<td>
+								<input id="slots2" type='input' name='hf' value='{{horafim}}' MAXLENGTH="4" title="Formato: HHMM"><br>
+							</td>
+					<tr>
+		</table>
+				<br>
+		<table class='table'>
+			<tr>
+				<td align='center'><b>Exibição:</b></td>
+					<td>
+						<input type="radio" id="grafico" name="tg" value="graph" checked="{{checkg}}"><b>Gráfico</b> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="tableradio" name="tg" value="table" checked="{{checkt}}"><b>Tabela</b>
+					</td>
+			<tr id="table">
+				<td>
+					<p class='helvetica' title="Sequência de questões separadas por virgula. Ex: 1,2,3"><b>Questões:</b>
+				</td>
+				<td>
+					<input type='input' name='qts' value='{{questoes}}' title="Sequência de questões separadas por virgula. Ex: 1,2,3."><br>
+				</td>
+			</tr>
+		</table>
+				<div align="center">
+					<input type='submit' value='Enviar'><input type='reset' value='Resetar' title="Resetar os forms">
+				</div>
+				</td>
+			</form>
+		</div>
+		</div>
+	</body>	 
+<html>

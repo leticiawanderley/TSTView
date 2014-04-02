@@ -1,112 +1,92 @@
-112210041,1,1,Abner Matheus Costa De Araujo
-112210867,1,3,Adriano Ferreira De Amorim
-111210943,3,5,Airla Guimaraes Carvalho
-112210640,1,1,Alan Wanderson Cintra Gomes
-112210423,1,3,Alberto Wagner Oliveira De Oliveira
-112210425,1,1,Alessandro Herculano Tolentino Junior
-112150726,3,5,Alisson Costa Barbosa
-112210045,2,2,Ana Isadora De Almeida Godoy
-112210046,2,2,Andreza Raquel Monteiro De Queiroz
-111210787,3,5,Arthur Ennyo Sarmento Pereira
-112210434,1,1,Arthur Lima Oliveira
-112210777,2,2,Arthur Lustosa De Souza
-112110025,3,5,Bartira Bezerra Fonseca
-112150728,3,5,Bruno Henrique Marinho De Souza
-112210436,1,3,Caio Fabio Juvino De Queiroz
-112210437,1,1,Caio Fabio Marinho Barbosa
-112110917,3,5,Catarina Dantas
-112210951,1,3,Cayus Uchoa De Lima
-112210439,2,2,Cesar Ferreira Tavares Neto
-112210054,1,3,Daiane Farias Siqueira
-112210056,1,1,Dayana Souza Silva
-111150279,3,5,Diego Kazadi Kalunda
-111210405,3,5,Diego Marques Ferreira
-111210064,3,5,Diego Silva Araujo
-112110923,3,5,Dimitri Diniz Porto
-112110874,3,5,Edvan Ferreira De Medeiros
-112210060,1,3,Ellder Rodrigo Araujo Targino
-111210657,3,5,Emanuel Florencio Costa
-112210953,1,1,Erick De Azevedo Alcantara
-112210446,2,2,Erik Ferreira Coelho
-112110928,3,5,Esdras Davi Corvelo De Menezes
-112211050,1,3,Fabiana Alves Gomes
-112150916,3,5,Feliciano Afonso Sa
-112210063,1,3,Feliciano Vidal De Negreiros Silva
-112210065,1,3,Felipe Miranda Medeiros
-112210993,2,2,Flavia Angelica Dos Santos Martiniano Pe
-112210067,2,4,Flavio Macaubas Torres Filho
-112210783,2,2,Francisco De Assis Gomes
-112210068,1,3,Gabriel Joseph Ramos Rafael
-112210647,2,4,Gabriela Alves Fernandes
-112110934,3,5,Geyson Nicollas Cunha Lima
-112110050,3,5,Guilherme Steinmuller Pimentel
-112210919,2,4,Gustavo Nobuhiro Santos Yamaguchi
-112210650,1,1,Heitor Soares Cardoso
-112210074,2,4,Helson Jader Rocha
-112210449,2,4,Hugo Antonio Lisboa Alves Filho
-112210077,2,2,Hugo Marques De Medeiros
-112210451,2,2,Iago Dantas De Pontes
-112210785,1,1,Ian Pinheiro Marinho
-112210078,1,3,Icaro Forte Dantas Medeiros
-112210079,1,1,Igor De Araujo Meira
-112210081,1,3,Iully Jamile Cavalcanti Borges
-112210869,2,2,Ivania Alves Guedes
-112210653,2,4,Jailson Ramos Campos
-112190042,3,5,Jefferson Martins De Sousa
-112210453,1,3,Jefferson Romulo Reboucas
-112210454,2,4,Jeremy Pougnet Petit
-111210794,3,5,Joao Felipe Braz Leite
-112150445,3,5,Joao Paulo Pequeno De Araujo
-112210456,2,4,Johanny De Lucena Santos
-112210655,2,4,Jonatas Barros Araujo
-112210086,1,1,Jose Lucas Silva Freitas
-112210458,2,4,Jose Matheus De Lima Medeiros
-112210788,1,3,Juan Henrique Satyro De Almeida
-112210789,1,1,Kaio Cesar Ferreira Maciel
-112210089,1,1,Kallynny Karlla Alcantara Antonino
-112210090,2,4,Kellyanne Laisa Lucas Luna
-112210657,2,2,Kevin Jordan Mendes Trigueiro
-112210790,1,1,Leonardo De Carvalho Cordeiro
-112210658,1,3,Lindomario Lima Rocha
-112210996,2,4,Luan Diago Ferreira De Oliveira
-112210094,1,1,Lucas Andre Salvino
-112210095,2,2,Lucas Da Silva Almeida
-112210660,2,2,Lucas Do Nascimento Ribeiro
-112210463,2,4,Lucas Felipe Farias Lima Felix De Figuei
-112210096,1,3,Lucas Franca Do Nascimento Farias
-112210464,2,2,Lucas Kalebe Silva Furtado
-112210920,2,2,Lucas Marlon Lira Marques
-112211094,2,4,Luis Claudio Pereira De Araujo Filho
-112210099,2,2,Luiz Miguel Bandeira Costa
-112210100,2,2,Manoel Messias Lima Do Nascimento
-112210791,1,1,Marcos Antonio Silva Nascimento
-112210103,1,1,Maria Daniela Costa Henrique
-112210105,2,4,Matheus Vieira De Sousa
-112210108,2,2,Miguel Martins Dos Santos Neto
-112150451,3,5,Monalisa Moisinho Leal
-112210112,2,4,Olavo Brito Souza
-112150734,3,5,Pablo Freitas Goncalves
-112110085,3,5,Paulo Cesar Oliveira Brito
-112150453,3,5,Pedro Antas Pereira Neto
-112110954,3,5,Rafael De Souza Guerra
-112211049,2,4,Rayanne Oliveira Freitas
-112210666,1,1,Rayssa Naianny Oliveira Ledo
-112210667,1,3,Renan Nascimento De Oliveira
-112210472,1,3,Rodrigo Loiola De Farias
-112210668,1,3,Romario Batista Da Silva
-112210473,1,1,Rossane Gomes Nascimento
-112210121,2,4,Samantha Karolynne Evangelista Monteiro
-112210122,2,4,Stenio Elson Costa Araujo
-112210123,2,2,Tarcisio Bruno Da Silva Lima
-112210476,2,4,Thales Pereira Gomes Lopes
-112210796,2,4,Thiago Barbosa De Araujo
-111250017,3,5,Van Eyck Silva Rosas
-112210478,2,4,Vicente Matheus Do Nascimento Pereira Bu
-112210128,2,2,Victor Araujo De Oliveira
-112110959,3,5,Victor Hugo Da Silva Ximenis
-112210797,1,1,Vinicius Jose Da Silva
-112211076,1,1,Waleria Pereira Camilo
-112210672,1,1,Wandson Allys Silva Dantas
-112210479,2,2,Wemilly De Sousa Carvalho
-112210480,1,3,Wesley Nunes Marques Torres
-112210131,1,3,Yuri Anderson De Assis Saraiva
+2,2,113111987,JOAO ALCIMAR SANTIAGO JUNIOR,joao.alcimar.junior,joao.alcimar.junior@ccc.ufcg.edu.br,??
+2,2,113210621,GUSTAVO ADOLFO DI PACE TEJO FILHO,gustavo.filho,gustavo.filho@ccc.ufcg.edu.br,adolfo
+2,2,113210413,GUSTAVO RODRIGUES SOUSA,gustavo.rodrigues.sousa,gustavo.rodrigues.sousa@ccc.ufcg.edu.br,adolfo
+2,2,113210423,JEFFERSON CARLOS DO NASCIMENTO BENEDITO,jefferson.benedito,jefferson.benedito@ccc.ufcg.edu.br,adolfo
+2,2,113210122,JOSE EDSON DE FREITAS FILHO,jose.filho,jose.filho@ccc.ufcg.edu.br,adolfo
+2,2,113210734,LEANDRO DE SOUTO LIMA,leandro.lima,leandro.lima@ccc.ufcg.edu.br,adolfo
+2,2,113210114,ITALO SIMOES LIMEIRA,italo.limeira,italo.limeira@ccc.ufcg.edu.br,adolfo
+4,2,113210893,ANDRE ARAUJO FALCAO GONCALVES,andre.goncalves,andre.goncalves@ccc.ufcg.edu.br,anderson
+4,2,113210102,GABRIEL AURELIANO DE LIMA E SILVA,gabriel.silva,gabriel.silva@ccc.ufcg.edu.br,anderson
+4,2,113210623,HELVIS SANTOS LIMA,helvis.lima,helvis.lima@ccc.ufcg.edu.br,anderson
+4,2,113210110,HIAGO NATAN FERNANDES DE SOUSA,hiago.sousa,hiago.sousa@ccc.ufcg.edu.br,anderson
+4,2,113210421,JEAN MATHEUS CABRAL DE ARAUJO,jean.araujo,jean.araujo@ccc.ufcg.edu.br,anderson
+4,2,113210426,JULIANA DE SOUSA NOBRE,juliana.nobre,juliana.nobre@ccc.ufcg.edu.br,anderson
+4,2,113210133,LUIZA CARVALHO SILVEIRA,luiza.silveira,luiza.silveira@ccc.ufcg.edu.br,anderson
+4,2,113210119,JOAO CARLOS ALMEIDA DE FARIAS FERNANDES,joao.fernandes,joao.fernandes@ccc.ufcg.edu.br,anderson
+3,1,113210100,FELIPE EMERSON DE OLIVEIRA CALIXTO,felipe.calixto,felipe.calixto@ccc.ufcg.edu.br,carol
+3,1,113210108,HEBERT LUCAS DE LIMA MORAIS,hebert.morais,hebert.morais@ccc.ufcg.edu.br,carol
+3,1,113210622,HELISSON LUIZ DO NASCIMENTO,helisson.nascimento,helisson.nascimento@ccc.ufcg.edu.br,carol
+3,1,113210419,ITALO RAPHAEL ALMEIDA COSTA,italo.costa,italo.costa@ccc.ufcg.edu.br,carol
+3,1,113210424,JOAO NASCIMENTO DA COSTA NETO,joao.neto,joao.neto@ccc.ufcg.edu.br,carol
+3,1,113210130,LUCAS NASCIMENTO CABRAL,lucas.cabral,lucas.cabral@ccc.ufcg.edu.br,carol
+4,2,113210141,NICOLAS GABRIEL TAVEIRA DA SILVA,nicolas.silva,nicolas.silva@ccc.ufcg.edu.br,erickson
+4,2,113210582,PABLO VICTOR FELIDOS SANTOS,pablo.santos,pablo.santos@ccc.ufcg.edu.br,erickson
+4,2,113210630,RAFAEL HENRIQUE PORTO ESTRELA,rafael.estrela,rafael.estrela@ccc.ufcg.edu.br,erickson
+4,2,113210148,RENATO ELY DOMINGUES SILVA,renato.silva,renato.silva@ccc.ufcg.edu.br,erickson
+4,2,113210810,THALES HENRIQUE DANTAS SOUTO,thales.souto,thales.souto@ccc.ufcg.edu.br,erickson
+4,2,113210436,PETRUS SILVA DE LIMA,petrus.lima,petrus.lima@ccc.ufcg.edu.br,erickson
+4,2,113210152,THAYNA TAVARES CAVALCANTI,thayna.cavalcanti,thayna.cavalcanti@ccc.ufcg.edu.br,erickson
+4,2,113210158,YALLI LEITE VILAR,yalli.vilar,yalli.vilar@ccc.ufcg.edu.br,erickson
+1,1,113210410,FLABIO FAGUNDES ARAUJO DA MATTA,flabio.matta,flabio.matta@ccc.ufcg.edu.br,filipe
+1,1,113210113,IGOR NATANAEL SOUSA ATAIDE,igor.ataide,igor.ataide@ccc.ufcg.edu.br,filipe
+1,1,113210422,JEFERSON FERREIRA DA SILVA,jeferson.silva,jeferson.silva@ccc.ufcg.edu.br,filipe
+1,1,113210120,JOAO ITAMAR VIEIRA JUNIOR,joao.junior,joao.junior@ccc.ufcg.edu.br,filipe
+1,1,113210428,LUCAS PIERRE DE ALENCAR,lucas.alencar,lucas.alencar@ccc.ufcg.edu.br,filipe
+1,1,113210104,GABRIEL LEITE LEAL,gabriel.leal,gabriel.leal@ccc.ufcg.edu.br,filipe
+1,1,113210625,MARIA CLARA OLIVEIRA DOS SANTOS,maria.santos,maria.santos@ccc.ufcg.edu.br,filipe
+3,1,113210432,MATHEUS FILIPE DE LIMA SOUZA,matheus.souza,matheus.souza@ccc.ufcg.edu.br,izabela
+3,1,113210581,MENDELSSOHN DANTAS DE SA,mendelssohn.sa,mendelssohn.sa@ccc.ufcg.edu.br,izabela
+3,1,113210628,NATHAN KEVIN ALVES PORTO,nathan.porto,nathan.porto@ccc.ufcg.edu.br,izabela
+3,1,111110493,PEDRO HENRIQUE MORAES VIEIRA,pedro.vieira,pedro.vieira@ccc.ufcg.edu.br,izabela
+3,1,113210742,ROBERTO MATHEUS LUCENA SOARES,roberto.soares,roberto.soares@ccc.ufcg.edu.br,izabela
+3,1,113210139,MIKAEL VASCONCELOS DE SOUZA,mikael.souza,mikael.souza@ccc.ufcg.edu.br,izabela
+3,1,113210151,STANLEY JONY NUNES PIRES,stanley.pires,stanley.pires@ccc.ufcg.edu.br,izabela
+3,1,113210157,YAGO CRISPIM GOMES,yago.gomes,yago.gomes@ccc.ufcg.edu.br,izabela
+3,1,113210074,AKYLLES DE LIMA BRASIL,akylles.brasil,akylles.brasil@ccc.ufcg.edu.br,joao
+3,1,113210607,ANGELO COSTA DE OLIVEIRA,angelo.oliveira,angelo.oliveira@ccc.ufcg.edu.br,joao
+3,1,113210078,APOENNA CAETANO LIMA,apoenna.lima,apoenna.lima@ccc.ufcg.edu.br,joao
+3,1,113210087,CLENIMAR FILEMON SOUSA,clenimar.sousa,clenimar.sousa@ccc.ufcg.edu.br,joao
+3,1,113210403,DANIEL EPIFANIO BEZERRA,daniel.bezerra,daniel.bezerra@ccc.ufcg.edu.br,joao
+3,1,113210862,DEBORA SOARES E SILVA,debora.silva,debora.silva@ccc.ufcg.edu.br,joao
+3,1,113210614,DIOGO FLORENCIO DE LIMA,diogo.lima,diogo.lima@ccc.ufcg.edu.br,joao
+1,1,113210076,ALINE APARECIDA TRINDADE DA COSTA,aline.costa,aline.costa@ccc.ufcg.edu.br,klaudio
+1,1,113210753,DYEGO DA SILVA BARBOSA FERREIRA,dyego.ferreira,dyego.ferreira@ccc.ufcg.edu.br,klaudio
+1,1,113210815,ELLEN KAROLINE ARAUJO DE OLIVEIRA,ellen.oliveira,ellen.oliveira@ccc.ufcg.edu.br,klaudio
+1,1,113210083,CAIO LOPES TAVARES,caio.tavares,caio.tavares@ccc.ufcg.edu.br,klaudio
+1,1,113210609,ARTHUR DE FARIAS LEAL,arthur.leal,arthur.leal@ccc.ufcg.edu.br,klaudio
+4,2,113210750,ALEXANDRE LIMA SILVA,alexandre.silva,alexandre.silva@ccc.ufcg.edu.br,lucas
+4,2,113210608,ANTONIO LUCIO CARVALHO DE QUEIROZ,antonio.queiroz,antonio.queiroz@ccc.ufcg.edu.br,lucas
+4,2,113210081,BRUNO FERREIRA FARIAS,bruno.farias,bruno.farias@ccc.ufcg.edu.br,lucas
+4,2,113210616,EDIELSON MIRANDA DINIZ,edielson.diniz,edielson.diniz@ccc.ufcg.edu.br,lucas
+4,2,113210406,EMANOEL BARROS DE SOUSA OLIVEIRA,emanoel.oliveira,emanoel.oliveira@ccc.ufcg.edu.br,lucas
+3,1,113210090,DIEGO ADOLFO SILVA DE ARAUJO,diego.araujo,diego.araujo@ccc.ufcg.edu.br,lucas
+4,2,113210075,ALECSANDER CAMILO DE SOUSA LIMA,alecsander.lima,alecsander.lima@ccc.ufcg.edu.br,lucas
+2,2,113210073,AGUIRRE SABINO FONSECA,aguirre.fonseca,aguirre.fonseca@ccc.ufcg.edu.br,luiz
+2,2,113210084,CARLA MORGANA BEZERRA E SILVA,carla.silva,carla.silva@ccc.ufcg.edu.br,luiz
+2,2,113210105,GEORGE LUIZ SANTOS ARAUJO,george.araujo,george.araujo@ccc.ufcg.edu.br,luiz
+2,2,113210077,AMANDA GABRIELLA VITORINO BARROS,amanda.barros,amanda.barros@ccc.ufcg.edu.br,luiz
+2,2,113210605,ANA CAROLINA BRAZ ANDRADE,ana.andrade,ana.andrade@ccc.ufcg.edu.br,luiz
+2,2,113210613,DIOGENES LUIZ OLIVEIRA ARAUJO,diogenes.araujo,diogenes.araujo@ccc.ufcg.edu.br,luiz
+1,1,113210137,MATHEUS ROCHA LIBORIO,matheus.liborio,matheus.liborio@ccc.ufcg.edu.br,martha/remy
+1,1,113210142,OLIVEIROS CAVALCANTI DE OLIVEIRA NETO,oliveiros.neto,oliveiros.neto@ccc.ufcg.edu.br,martha/remy
+1,1,113210149,RODRIGO FIGUEIREDO DE CARVALHO COSTA,rodrigo.costa,rodrigo.costa@ccc.ufcg.edu.br,martha/remy
+1,1,113210153,VALGONE PEREIRA BEZERRA,valgone.bezerra,valgone.bezerra@ccc.ufcg.edu.br,martha/remy
+1,1,113210631,VIRGINIA FEITOSA NOGUEIRA ROCHA,virginia.rocha,virginia.rocha@ccc.ufcg.edu.br,martha/remy
+1,1,113210882,NICOLAS RIBEIRO MATOS,nicolas.matos,nicolas.matos@ccc.ufcg.edu.br,martha/remy
+1,1,113210160,YURI TORRES MEDEIROS,yuri.torres.medeiros,yuri.torres.medeiros@ccc.ufcg.edu.br,martha/remy
+2,2,113210431,MARIA EDUARDA DE AGUIAR ALBUQUERQUE,maria.albuquerque,maria.albuquerque@ccc.ufcg.edu.br,uian
+2,2,113210627,MATHEUS FELIPE FRAGOSO DA SILVA,matheus.fragoso.silva,matheus.fragoso.silva@ccc.ufcg.edu.br,uian
+2,2,113210138,MAYARA VICTORIA MEDEIROS PEREIRA,mayara.pereira,mayara.pereira@ccc.ufcg.edu.br,uian
+2,2,113210819,NEY LOPES CARVALHO,ney.carvalho,ney.carvalho@ccc.ufcg.edu.br,uian
+2,2,113210150,RODRIGO RIBEIRO DA SILVA,rodrigo.silva,rodrigo.silva@ccc.ufcg.edu.br,uian
+2,2,113210154,VICTOR HUGO FERNANDES DE SOUSA,victor.sousa,victor.sousa@ccc.ufcg.edu.br,uian
+2,2,113210145,RAFAEL SAMPAIO TAVARES,rafael.tavares,rafael.tavares@ccc.ufcg.edu.br,uian
+2,2,113210444,WENDLEY PAULO DE FRANCA,wendley.franca,wendley.franca@ccc.ufcg.edu.br,uian
+1,1,113210604,ALEXANDRE RIBEIRO DO NASCIMENTO,alexandre.nascimento,alexandre.nascimento@ccc.ufcg.edu.br,
+1,1,113210095,ELSON PEREIRA DE LIMA,elson.lima,elson.lima@ccc.ufcg.edu.br,
+2,2,113210097,FABRICIO DE LIMA SILVA,fabricio.silva,fabricio.silva@ccc.ufcg.edu.br,
+1,1,113210619,FERNANDO HENRIQUE RIBEIRO DE OLIVEIRA,fernando.oliveira,fernando.oliveira@ccc.ufcg.edu.br,
+3,1,113210117,JHONATHAN DE FRANCA CAVALCANTE,jhonathan.cavalcante,jhonathan.cavalcante@ccc.ufcg.edu.br,
+2,2,113210757,JONATHA MIDORI YASSAKI,jonatha.yassaki,jonatha.yassaki@ccc.ufcg.edu.br,
+3,1,113210758,KRYSTOFFAN HENRIQUE DO O,krystoffan.o,krystoffan.o@ccc.ufcg.edu.br,
+3,1,113210146,RAVELLI FERREIRA DOS SANTOS,ravelli.santos,ravelli.santos@ccc.ufcg.edu.br,

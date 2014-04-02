@@ -4,6 +4,13 @@
 		h2 {font-size:14px;}
 		p.monospace{font-family:"Courier New", Courier, monospace; font-weight:normal;}
 		p.helvetica{font-family:Arial, Helvetica, sans-serif; font-weight:normal;}
+		table.nomes {
+			table-layout:fixed; 
+			width:65%; 
+			border: 0px solid #CCC; 
+			font-family: Arial, Helvetica, sans-serif;	
+			font-size: 14.5px;
+		} 
 	</style>
 	<head>
 		<title>Report</title>
@@ -40,8 +47,8 @@
 			</tr>
 			<tr>
 			<td>
-				<p class='helvetica'>Matrículas:<span style='padding-left:6px'>
-				<input id='turmas' type='input' name='matriculas' value=''>&nbsp;(Separadas por vírgula)</span>
+				<p class='helvetica'>Aluno:<span style='padding-left:37px'>
+				<input id='turmas' type='input' name='matriculas' value=''>&nbsp;</span>
 			</td>
 			</tr>
 			<tr>
@@ -80,20 +87,20 @@
 		</form></td></tr></table></div><br>
 		
 		<div align="center">
-		<table width="90%" border="0">
+		<table class="nomes"><col width="310">
 		<tr>
 			<td align="left" width="50%">
-			{% for matricula in matriculas.keys()[:count] %}
-				<h1><p class="monospace" style="line-height: 14px">
-				<a href='/report?matriculas={{matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
-				style="color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matriculas[matricula]}} - {{matricula}}</a></p></h1>
+			{% for matricula in matriculas[count:] %}
+				<h1><p class="helvetica" style="line-height: 14px">
+				<a href='/report?matriculas={{matricula.matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
+				style="color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matricula.name}} - {{matricula.matricula}}</a></p></h1>
 			{% endfor %}
 			</td>
 			<td align="left" width="50%">
-			{% for matricula in matriculas.keys()[count:] %}
-				<h1><p class="monospace" style="line-height: 14px">
-				<a href='/report?matriculas={{matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
-				style="color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matriculas[matricula]}} - {{matricula}}</a></p></h1>
+			{% for matricula in matriculas[:count] %}
+				<h1><p class="helvetica" style="line-height: 14px">
+				<a href='/report?matriculas={{matricula.matricula}}&data={{data}}&df={{df}}&dia={{dia}}&semana={{semana}}&questoes={{questoes}}' 
+				style="color:blue; font-weight:100; text-decoration: none; line-height:8px">{{matricula.name}} - {{matricula.matricula}}</a></p></h1>
 			{% endfor %}
 			</td>
 		</tr>

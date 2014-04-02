@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+
+		google.load('visualization', '1.0', {'packages':['corechart']});
+
+		google.setOnLoadCallback(drawChartClass{{matricula_aluno}});
+		google.setOnLoadCallback(drawChartNotClass{{matricula_aluno}});
+		google.setOnLoadCallback(drawChartGeral{{matricula_aluno}});
+		
+		function tabs{{matricula_aluno}}(chosenTab, matricula) {
+			if (chosenTab == "aula" + matricula){
+				drawChartClass{{matricula_aluno}}();
+				document.getElementById("selected" + matricula).style.background = "white";
+				document.getElementById("selected1" + matricula).style.background = "#C0C0C0";
+				document.getElementById("selected2" + matricula).style.background = "white";
+			}
+			else if (chosenTab == "naoaula" + matricula){	
+				drawChartNotClass{{matricula_aluno}}();
+				document.getElementById("selected" + matricula).style.background = "white";
+				document.getElementById("selected1" + matricula).style.background = "white";
+				document.getElementById("selected2" + matricula).style.background = "#C0C0C0";
+			}
+			else {
+				drawChartGeral{{matricula_aluno}}();
+				document.getElementById("selected" + matricula).style.background = "#C0C0C0";
+				document.getElementById("selected1" + matricula).style.background = "white";
+				document.getElementById("selected2" + matricula).style.background = "white";
+			}
+		}
+		
+		function drawChartGeral{{matricula_aluno}}() {
+				
+		var data = new google.visualization.DataTable();
+			data.addColumn('string', 'matricula');
+			data.addColumn('number', 'Certas');
+			data.addColumn('number', 'Erradas');
+			data.addColumn('number', 'Certas - TP{{tp}}');
+			data.addColumn('number', 'Erradas - TP{{tp}}');
+			data.addRows({{grafico_geral}}		 
+			);
+
+		var options = {'title':'Geral',
+			'width':800,
+			'height':600,
+			colors:['339900','#DC143C', "3366CC", "#FFCC00"],
+			'isStacked': true};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('content{{matricula_aluno}}'));
+			chart.draw(data, options);
+		}
+		
+		function drawChartClass{{matricula_aluno}}() {
+		
+		var data = new google.visualization.DataTable();
+			data.addColumn('string', 'matricula');
+			data.addColumn('number', 'Certas');
+			data.addColumn('number', 'Erradas');
+			data.addColumn('number', 'Certas - TP{{tp}}');
+			data.addColumn('number', 'Erradas - TP{{tp}}');
+			data.addRows({{grafico_aula}}
+			);
+
+		var options = {'title':'Em aula',
+			'width':800,
+			'height':600,
+			colors:['339900','#DC143C',"3366CC", "#FFCC00"],
+			'isStacked': true};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('content{{matricula_aluno}}'));
+			chart.draw(data, options);
+		}
+		
+		function drawChartNotClass{{matricula_aluno}}() {
+
+		var data = new google.visualization.DataTable();
+			data.addColumn('string', 'matricula');
+			data.addColumn('number', 'Certas');
+			data.addColumn('number', 'Erradas');
+			data.addColumn('number', 'Certas - TP{{tp}}');
+			data.addColumn('number', 'Erradas - TP{{tp}}');
+			data.addRows({{grafico_naoaula}}		 
+			);
+
+		var options = {'title':'Fora da aula',
+			'width':800,
+			'height':600,
+			colors:['339900','#DC143C', "#3366CC", "#FFCC00"],
+			'isStacked': true};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('content{{matricula_aluno}}'));
+			chart.draw(data, options);
+		}
+										
+		function {{iden}}() {
+			var ele = document.getElementById("{{iden}}");
+			var text = document.getElementById("{{div}}");
+			if(ele.style.display == "none") {
+				ele.style.display = "block";
+				text.innerHTML = "Resultados";
+				}
+			else {
+				ele.style.display = "none";
+				text.innerHTML = "Resultados";
+				}
+		}
+		</script>
+	</head>
+	<style>
+		h2 {font-size:12px}
+		h3 {font-size:14px}
+		p.monospace{font-family:"Courier New", Courier, monospace; sans-serif;}
+		p.helvetica{font-family:"Arial", Helvetica, sans-serif;}
+		td {vertical-align:top;}
+		#header{{matricula_aluno}} ul {
+			list-style: none;
+			padding:0;
+			margin:0;
+		}
+		
+		#header{{matricula_aluno}} li {
+			display: inline;
+			border: solid;
+			border-width: 0px 0px 0px 0px;
+			margin: 0 0.5em 0 0;
+		}
+			
+		#content{{matricula_aluno}} {
+			border: 0px solid;
+			vertical-align:top; 
+		}
+		
+		#header{{matricula_aluno}} #selected{{matricula_aluno}} {
+			padding-bottom: 0px; 
+			background: #C0C0C0;
+		}
+		
+		#header{{matricula_aluno}} #selected1{{matricula_aluno}} {
+			padding-bottom: 0px; 
+			background: white;
+		}
+		
+		#header{{matricula_aluno}} #selected2{{matricula_aluno}} {
+			padding-bottom: 0px; 
+			background: white;
+		}
+	</style>
+		<body>
+			
+			<table width="{{tamanho}}" border="0">
+			<tr>
+			<div id="studentresults"><td align ="left">
+				<h3><p class="helvetica">
+				<span style='padding-left:70px'><a id="{{div}}" href="javascript:{{iden}}()" class="monospace" style="color:blue">Resultados</a></p></h3>
+				<div id="{{iden}}" style="display: none"></span>
+				{% for resultado in resultados[0] %}
+					<p class="monospace" style="line-height:5px; font-size:15px;"><span style='padding-left:70px'>
+						{{resultado}}</span></p>
+				{% endfor %}
+			</td></div></div>
+			<td align="center">
+				<h1><p class="helvetica">Gráfico de submissões</p></h1>
+				<div id="header{{matricula_aluno}}"> 
+					<ul>
+						<font face="helvetica"><li id="selected{{matricula_aluno}}"><span onclick="tabs{{matricula_aluno}}('geral{{matricula_aluno}}', '{{matricula_aluno}}');return false;" style="cursor:pointer;cursor:hand">Geral</li>
+						<li id="selected1{{matricula_aluno}}"><span onclick="tabs{{matricula_aluno}}('aula{{matricula_aluno}}', '{{matricula_aluno}}');return false;" style="cursor:pointer;cursor:hand">Em aula</li>
+						<li id="selected2{{matricula_aluno}}"><span onclick="tabs{{matricula_aluno}}('naoaula{{matricula_aluno}}', '{{matricula_aluno}}');return false;" style="cursor:pointer;cursor:hand">Fora da aula</li></font>
+					</ul>
+					<div id="content{{matricula_aluno}}"></div>
+				</div>
+			</td></tr></table>
+		</body>
+</html>

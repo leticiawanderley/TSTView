@@ -1,0 +1,19 @@
+<head>
+	<title>TSTView - Console</title>
+	<script type="text/JavaScript">
+		function loadXMLDoc() {
+			
+			var xmlhttp;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					$("#ajax_replace").html(xmlhttp.responseText);
+					setTimeout("loadXMLDoc()", 10*1000);
+				}
+			}
+			xmlhttp.open("GET","/refreshdata?trm={{turma}}&di={{datainicio}}&hi={{horainicio}}&df={{datafim}}&hf={{horafim}}&qts={{questoes}}&tg={{tabela_grafico}}",true);
+			xmlhttp.send();
+		}
+	</script>
+</head>
+	<div id="ajax_replace" align="center"></div>

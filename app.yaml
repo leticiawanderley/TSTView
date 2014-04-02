@@ -1,4 +1,4 @@
-application: tstview
+application: tstview-alpha
 version: 1
 runtime: python27
 api_version: 1
@@ -9,17 +9,17 @@ handlers:
 - url: /report
   script: report.app
 
-- url: /static/javascript/refreshdata.js
-  static_files: static/javascript/refreshdata.js
-  upload: static/javascript/refreshdata.js
-
-- url: /static/javascript/scroller.js
-  static_files: static/javascript/scroller.js
-  upload: static/javascript/scroller.js
-
 - url: /favicon.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon.ico
+
+- url: /loading.gif
+  static_files: static/images/ajax-loader.gif
+  upload: static/images/ajax-loader.gif
+
+- url: /stylesheet.css
+  static_files: static/templates/stylesheet.css
+  upload: static/templates/stylesheet.css
   
 - url: /.*
   script: console.app
@@ -27,3 +27,8 @@ handlers:
 libraries:
 - name: jinja2
   version: latest
+
+error_handlers:
+
+  - error_code: over_quota
+    file: recursos/over_quota.html

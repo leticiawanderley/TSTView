@@ -1,0 +1,20 @@
+<head>
+	<style>
+		h1 {font-size:26px; font-family:Arial, Helvetica, sans-serif;}
+		h4 {font-size:20px; font-family:Arial, Helvetica, sans-serif;}
+	</style>
+</head>
+	<div align=center>
+		<br>
+		<h1>
+			Parâmetro(s) Inválido(s):<br>
+		</h1>
+		<font color=red>
+		<h4>
+			{% for parametro in erros %}
+				{{parametro}}
+					<br>
+			{% endfor %}
+		</h4>
+			</font>
+	</div>

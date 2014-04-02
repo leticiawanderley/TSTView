@@ -1,0 +1,188 @@
+<html>
+	<head>
+	<style type="text/css">
+		
+	#tooltip {
+      top: 160px;
+      position: fixed;
+      line-height: 20px;
+      padding: 10px;
+      font-size: 12px;
+      text-align: left;
+      color: rgb(0, 0, 0);
+      background: rgb(255, 255, 255);
+      border: 4px solid rgb(0, 0, 0);
+      border-radius: 5px;
+      text-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+	}
+	
+	#tooltip2 {
+      top: 160px;
+      position: fixed;
+      line-height: 20px;
+      padding: 10px;
+      font-size: 12px;
+      text-align: left;
+      color: rgb(0, 0, 0);
+      background: rgb(255, 255, 255);
+      border: 4px solid rgb(0, 0, 0);
+      border-radius: 5px;
+      text-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+	}
+	
+	a.boxclose{
+    float:right;
+    margin-top:-10px;
+    margin-right:-10px;
+    cursor:pointer;
+    color: #fff;
+    border: 1px solid #000000;
+    border-radius: 40px;
+    background: #000000;
+    font-size: 36px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;       
+	}
+	
+	a.boxclose:hover {
+		background: #DB0000;
+	}
+	
+	.boxclose:before {
+		content: "×";
+	}
+	
+	.text {
+		overflow:scroll;
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	</style>
+	</head>
+	<script type="text/javascript">
+	
+	function closetooltip() {
+		$('#tooltip').hide();
+	};
+	
+	function buttonSub(questao, submissao, nome, matricula, admin, receiver, submissao_maxima) {
+		$("#tooltip").css({"height": ""});
+		$("#tooltip").css({"width": ""});
+		if (submissao > 0 && submissao <= submissao_maxima) {
+			tooltip(questao, submissao, submissao_maxima, nome, matricula, admin, receiver);
+		} else {
+		$("#tooltip").hide();	
+		alert("Não há outras submissões");
+		}
+	};
+
+	function tooltip(questao, submissao, submissao_maxima, nome, matricula, admin, receiver) {
+		var xmlhttp;
+		var subject = "Comentario - Questao: " + questao + ", Submissao: " + submissao;
+		xmlhttp = new XMLHttpRequest();
+		$("#tooltip").show();
+		$("#tooltip").html("<div align=center><img src='loading.gif' alt='Loading...'></div>");
+		var x = (window.innerWidth / 2) - ($("#tooltip").width() / 2);
+		$("#tooltip").css({"left":x});
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var subplus = (parseInt(submissao)) + 1;
+				var subminus = (parseInt(submissao)) - 1;
+				
+				$("#tooltip2").html(xmlhttp.responseText);
+				if (admin == 'True') {
+					$("#tooltip").html("<div style='padding-left:5px;border:1px solid black;font-family: Arial, Helvetica, sans-serif;'>" + 
+											"<a class='boxclose' id='boxclose' onclick='closetooltip()'></a>" + 
+											"Aluno: " + nome + "<br>" + "Questão: " + questao + " <br> " + "Submissão: " + submissao + "</span>" + 
+												"<div align=center>" +
+													"<button id='buttonminus' onclick='buttonSub(" + questao + "," + subminus + ",\"" + nome + "\"," + matricula + ",\"" + admin + "\"," + "\"" + receiver + "\"," + submissao_maxima + ")'>Anterior</button>" +
+													"<button id='buttonplus' onclick='buttonSub(" + questao + "," + subplus + ",\"" + nome + "\"," + matricula + ",\"" + admin + "\"," + "\"" + receiver + "\"," + submissao_maxima + ")'>Próxima</button>" +
+												"</div>"+
+										"</div>" + 
+										"<br>" + "<div align=center>" + 
+											"<form action='/email' method='post'>" + 
+													"<input type='hidden' name='receiver' value='" + receiver + "'>" +
+													"<input type='hidden' name='subject' value='" + subject + "'>" +
+													"<textarea type='text' name='body' class='text'>" + xmlhttp.responseText.slice(11,-12) + "</textarea>" + "<br>" + "<div align=center>" +
+													"<input type='submit' value='Enviar'>" + "</div>" +	
+													"</form>" + 
+										"</div>");
+				}
+				else {
+					$("#tooltip").html("<div style='padding-left:5px;border:1px solid black;font-family: Arial, Helvetica, sans-serif;'>" + 
+											"<a class='boxclose' id='boxclose' onclick='closetooltip()'></a>" + 
+												"Aluno: " + nome + "<br>" + "Questão: " + questao + " <br> " + "Submissão: " + submissao + "</span>" + 
+													"<div align=center>" +
+														"<button id='buttonminus' onclick='buttonSub(" + questao + "," + subminus + ",\"" + nome + "\"," + matricula + ")'>Anterior</button>" +
+														"<button id='buttonplus' onclick='buttonSub(" + questao + "," + subplus + ",\"" + nome + "\"," + matricula + ")'>Próxima</button>" +
+													"</div>" 
+										+"</div>" 
+										+ "<br>" + "<textarea class='text'>" + xmlhttp.responseText + "</textarea>");					
+				}
+
+				$(".text").width($("#tooltip2").width());
+				$(".text").height("70%");
+				$("#tooltip").height("65%");
+				var y = $("#tooltip2").width() + 50;
+				$("#tooltip").width(y);
+				var x = (window.innerWidth / 2) - ($("#tooltip").width() / 2);
+				$("#tooltip").css({"left":x});
+				$(".text").css({"left":x});
+				
+				
+			}
+		}
+		xmlhttp.open("GET","/codigos?view=true&questao=" + questao + "&submissao="+ submissao + "&matricula=" + matricula + "&k=FilipeticaSaoDoisAlunosMuitoDanadinh0s",true);
+		xmlhttp.send();
+		$(document).mouseup(function (e) {
+			var container = $("#tooltip");
+		
+			if (container.has(e.target).length === 0) {
+				$("#tooltip").css({"height": ""});
+				$("#tooltip").css({"width": ""});
+				container.hide();
+			}
+		});
+	};
+
+	function GetClock(){
+		d = new Date();
+		nday   = d.getDay();
+		nmonth = d.getMonth();
+		ndate  = d.getDate();
+		nyear = d.getYear();
+		nhour  = d.getHours();
+		nmin   = d.getMinutes();
+		nsecs = d.getSeconds();
+		nmonth = (nmonth+1);
+
+		  
+		if(nyear<1000) nyear=nyear+1900;
+		if(nsecs <= 9){nsecs = "0"+nsecs};
+		if(nmin <= 9){nmin="0"+nmin};
+		if(nhour<=9){nhour="0"+nhour};
+		if(nmonth <= 9){nmonth="0"+nmonth};  
+		if(ndate <= 9){ndate="0"+ndate};
+
+		document.getElementById('clockbox').innerHTML="Data/Hora atual: "+ndate+"/"+nmonth+"/"+nyear+", "+nhour+":"+nmin+":"+nsecs+"";
+		setTimeout("GetClock()", 1000);
+	}
+	</script>
+	<br>
+	<div align='center'>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+		<div id="clockbox" style="font:15pt Helvetica; font-weight:bold"></div>
+			<h3><font face='helvetica'>{{print_intervalo}}</font></h3>
+	</div>
+	<div align="center">
+	<table>
+	​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​	<td>
+			<div id="tooltip"></div>
+			<div id="tooltip2"></div>
+		</td>
+	</table>
+	</div>
+</html>

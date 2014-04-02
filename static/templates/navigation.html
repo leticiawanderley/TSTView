@@ -1,9 +1,10 @@
-<html> 
- <head>
+	<head>
 	<style type="text/css"> 
-	<!--
+
 	#navbar ul {
 		width: 100%;
+		left: 0px;
+		float: center;
 		margin: 0; 
 		padding: 8px; 
 		list-style-type: none;
@@ -16,9 +17,13 @@
 		color: rgba(1, 1, 1, 1);
 		}
 	#navbar ul li {
+		position: relative;
 		display: inline;
+		float: center;
 		}  
 	#navbar ul li a {
+		
+		float: center;
 		text-decoration: none;
 		padding:.7em 2em;
 		color: #FFFFFF;
@@ -28,25 +33,34 @@
 		background-color: #000;
 		}  
 	#navbar ul li a:hover {
+		float: center;
 		color: #000;
 		-webkit-box-shadow: 0px 0px 12px 0px #000000;
 		-moz-box-shadow: 0px 0px 12px 0px #000000;
 		box-shadow: 0px 0px 15px 0px #000000; 
 		background-color: #FFFFFF;
 		}
-	-->  
+
 	li.helvetica{font-family:Arial, Helvetica, sans-serif;}
-	</style> 
+	</style>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"></link>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+	<script>
+		$(function() {
+			$("#tooltip").hide();
+			$("#tooltip2").hide();
+		});
+	</script>
 	</head> 
-	 <!-- onload="JavaScript:timedRefresh(45000);" onunload="saveScroll()" -->
-		<body onload="loadXMLDoc(); GetClock()" >
-			<div id="navbar">   
-				<ul> 	
+		<body onload="loadXMLDoc(); GetClock()">
+			<div id="navbar">
+				<ul>
 				<li class="helvetica" style="font-size: 18px"><a href="/">Console</a></li>
-				{% if not report %}
-					<li class="helvetica" style="font-size: 18px"><a href="/report">Report</a></li>	
-				{% endif %}
+					<li class="helvetica" style="font-size: 18px"><a href="/report">Report</a></li>
 				</ul> 
 			</div> 
 		</body> 
 </html>
+

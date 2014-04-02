@@ -1,0 +1,59 @@
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"></link>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+	<style type="text/css">
+		table.submissoes {
+			table-layout:fixed; 
+			width:65%; 
+			border: 1px solid #CCC; 
+			font-family: Arial, Helvetica, sans-serif;	
+			font-size: 14.5px;
+		} 
+		
+		.submissoes td {
+			white-space:normal; 
+			padding: 0px;
+			margin:0px;
+			border: 0px solid #ccc;
+		}
+		
+	</style>
+<title>Console</title>
+</head>
+	<div align="center">
+		<table class="submissoes"><col width="310">
+			{% for aluno in alunos %}
+			<tr onMouseover="this.bgColor='#DBDBDB';" onMouseout="this.bgColor='#FFFFFF';">
+				<dl>
+					<dd>
+						<td onClick="document.location.href='/report?data={{data_report}}&df={{dataf_report}}&matriculas={{aluno.matricula}}';" style="vertical-align:top;cursor:pointer;cursor:hand" title="Matrícula: {{aluno.matricula}}. TT{{aluno.tt}}, TP{{aluno.tp}}">
+							<img src="http://cdn1.iconfinder.com/data/icons/splashyIcons/arrow_state_grey_right.png">
+							<a style="vertical-align:top;color:blue; text-decoration:none">&nbsp;{{aluno.name}}</a>
+						</td>
+					</dd>
+				</dl>
+						<td>
+							{% if aluno in alunos_sessao %}
+								{% for submission in aluno.submissions %}	
+									{% if submission.success %}
+										{% if aluno.email == email or admin %}
+											<span style="cursor:pointer;cursor:hand" onClick="tooltip({{submission.question}}, {{submission.submission}}, {{submission.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" id="submission">{{submission.question}}</span>
+										{% else %}
+											<span onClick="alert('Logue para ver o código');">{{submission.question}}</span>
+										{% endif %}
+									{% else %}
+										{% if aluno.email == email or admin %}
+											<span style="font-color:red;cursor:pointer;cursor:hand" onClick="tooltip({{submission.question}}, {{submission.submission}}, {{submission.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" id="submission"><font color="red">{{submission.question}}</font></span>
+										{% else %}
+											<span onClick="alert('Logue para ver o código');"><font color="red">{{submission.question}}</font></span>
+										{% endif %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}	
+						</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+

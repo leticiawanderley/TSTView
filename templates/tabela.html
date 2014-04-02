@@ -1,0 +1,67 @@
+<head>
+	<style type="text/css">
+		table.tabela {
+			border: 2px solid #CCC;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+		} 
+		.tabela td {
+			padding: 4px;
+			margin: 3px;
+			border: 1px solid #ccc;
+		}
+		.tabela th {
+			background-color: #000000; 
+			color: #FFF;
+			font-weight: bold;
+		}
+	</style>	
+	<title>Console: Tabela de questoes</title>
+</head>
+<body>
+	<div align="center">
+		<div id="tabela">
+			<table class="tabela">
+				<tr>
+					<td></td>
+					{% for questao in lista_questoes %}
+						<td onClick="document.location.href='/?di={{  datainicio  }}&hi={{  horainicio  }}&df={{ datafim }}&hf={{ horafim }}&trm={{ turma }}&qts={{ questao }}&tg={{tabela_grafico}}';" width=100 title="Gráfico: Questão {{ questao }}" style="cursor:pointer;cursor:hand" onMouseover="this.bgColor='#EEEEEE';" onMouseout="this.bgColor='#FFFFFF';" width='30' align='center'>
+							<p class='helvetica' style='line-height:16px; font-size:14px;'>
+							<a style='color:blue; font-weight:bold;' title="Gráfico: Questão {{ questao }}">{{ questao }}</a>
+						</td>
+					{% endfor %}
+				</tr>
+				{% for aluno in alunos %}
+				<tr>
+					<td onClick="document.location.href='/report?data={{datainicio}}&df={{datafim}}&matriculas={{aluno.matricula}}';" style="cursor:pointer;cursor:hand" title="Matrícula: {{aluno.matricula}}. TT{{aluno.tt}}, TP{{aluno.tp}}" onMouseover="this.bgColor='#DBDBDB';"onMouseout="this.bgColor='#FFFFFF';" width="300" align="center">
+						<p class="helvetica" style="line-height:14px; font-size:12.5px;">
+							<a style="color:blue; font-weight:bold; text-decoration: none;">{{aluno.name}}</a>
+					</td>
+					{% for questao in lista_questoes %}
+						{% if questao not in aluno.questions %}
+							<td bgcolor="white"></td>
+						{% else %}
+							{% for q in aluno.submissions if q.question == questao %}
+								{% if q.success %}
+									{% if aluno.email == email or admin %}
+										<td style="cursor:pointer;cursor:hand" onClick="tooltip({{q.question}}, {{q.submission}}, {{q.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" align="center" bgcolor=#00FF00><b>{{q.submissao}}</b></td>
+									{% else %}
+										<td align="center" bgcolor=#00FF00><b>{{q.submissao}}</b></td>
+									{% endif %}
+								{% else %}
+									{% if aluno.email == email or admin %}
+										<td style="cursor:pointer;cursor:hand" onClick="tooltip({{q.question}}, {{q.submission}}, {{q.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" align="center" bgcolor=#FF0000 ><b><font color="white">{{q.submissao}}</font></b></td>
+									{% else %}
+										<td align="center" bgcolor=#FF0000 ><b><font color="white">{{q.submission}}</font></b></td>
+									{% endif %}
+								{% endif %}
+								{% break %}
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</body>
