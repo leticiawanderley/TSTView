@@ -31,17 +31,6 @@ class Report_Logic():
             question = True
         return question
 
-    def students_of_laboratory(self, inicial_date, final_date, question_list):
-        # Only get students that submitted at least one exercise in a given date
-        matriculas = {}
-        for student in self.students.values():
-            if student.matricula not in matriculas:
-                for result in student.submissions:
-                    if self._question_filter(question_list, result.question) and self._define_interval(result.date, inicial_date, final_date)[0]:
-                        matriculas[student.matricula] = self.students[result.matricula]
-                        break
-        return matriculas
-
     def search_name(self, name):
         return model.search_name(self.students, self.classes, name)
 

@@ -1,4 +1,5 @@
 from datetime import datetime
+from collections import OrderedDict
 
 import data_source
 
@@ -22,7 +23,8 @@ class Student(object):
         question = self.questions.get(submission.question, Question(submission.question))
         question.submissions += 1
         self.questions[submission.question] = question
-        questions.add(submission.question)
+        if submission.question not in questions:
+            questions.append(submission.question)
 
     def __eq__(self, other):
         return self.matricula == other.matricula
@@ -84,7 +86,7 @@ def create_students_questions_and_classes(start_date=None, end_date=None):
     email_alunos = {}
     dicionario_turmas_p = {}
     dicionario_turmas_t = {}
-    questions = set()
+    questions = []
 
     for linha_info in data_source.get_students_data():
         aluno = Student(linha_info.strip())
@@ -119,7 +121,8 @@ def create_students_questions_and_classes(start_date=None, end_date=None):
         nome = "TT" + turma
         turmas[nome] = Turma("TT" + turma, dicionario_turmas_t[turma])
 
-    return alunos, questions, turmas
+    return OrderedDict(sorted(alunos.items(), key=lambda a: a[1].name)), questions, \
+        OrderedDict(sorted(turmas.items(), key=lambda a: a[0]))
 
 
 def search_name(students, classes, parameters):

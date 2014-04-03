@@ -156,7 +156,7 @@ class Report(webapp2.RequestHandler):
         self.response.out.write(navigation.render())
 
     def inicial_page(self, fields, report, data, df):
-        matriculas = report.students_of_laboratory(data, df, fields['questoes'])
+        matriculas = report.students
 
         values = dict(fields)
         values['mat'] = fields['matriculas']
