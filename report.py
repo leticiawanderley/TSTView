@@ -129,7 +129,6 @@ class Report(webapp2.RequestHandler):
             self.resultados_grafico(fields, report, geral, aula, naoaula, aluno, data, df, questoes, results)
             self.form_aluno(fields, aluno)
         except ValueError:
-            self.data, self.df = "", ""
             self.response.out.write(
                 u"""<p class="helvetica" style="text-align:center; font-size:30px; font-weight:bold; color:red">Parâmetro(s) de data inválido(s)""")
             self.inicial_page(fields, report, data, df)
