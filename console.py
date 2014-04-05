@@ -9,6 +9,7 @@ from logica_console import Console
 import model
 import os
 import jinja2
+import util
 
 DEBUG = False
 
@@ -76,16 +77,7 @@ def trata_parametros(datainicio, horainicio, datafim, horafim, questoes):
     return datainicial, datafinal, questoes
 
 
-class WebApp(webapp2.RequestHandler):
-
-    def cabecalho(self, datainicial, datafinal):
-        cabecalho_values = {
-            "print_intervalo": u"Submissões no intervalo (Das %s de %s às %s):" % (datetime.strftime(datainicial, "%H:%M"),
-                                                                                     datetime.strftime(datainicial, "%d/%m/%Y"),
-                                                                                     datetime.strftime(datafinal, "%H:%M de %d/%m/%Y"))}
-
-        jinja_env = jinja_environment.get_template("templates/cabecalho.html")
-        self.response.out.write(jinja_env.render(cabecalho_values))
+class WebApp(util.AppRequestHandler):
 
     def grafico(self, console, datainicial, datafinal):
 
@@ -106,17 +98,11 @@ class WebApp(webapp2.RequestHandler):
 
         self.response.out.write(grafico_env.render(grafico_values))
 
-    def ajax_replace(self, fields, console):
-        ajax_values = dict(fields)
-        ajax = jinja_environment.get_template("templates/ajax.html")
-        self.response.out.write(ajax.render(ajax_values))
-
     def get(self):
 
         self.response.headers["Content-Type"] = "text/html; charset=utf-8"
 
         user, is_adm, email = model.info(users.get_current_user())
-
         fields = Fields(self.request)
 
         self.login(user is not None, fields['datainicio'], fields['datafim'], fields['horainicio'],
@@ -128,41 +114,24 @@ class WebApp(webapp2.RequestHandler):
 
         console = Console(datainicial, datafinal, fields['turma'], lista_questoes)
 
-        if not console.alunos_set:  # FIXME check this later.. what to do in an access error
-            self.response.out.write(self.erro_acesso())
-        self.cabecalho(datainicial, datafinal)
+        # cabecalho
+        self.render("templates/cabecalho.html",
+                    {"print_intervalo": u"Submissões no intervalo (Das %s de %s às %s):" % (datetime.strftime(datainicial, "%H:%M"),
+                                                                                              datetime.strftime(datainicial, "%d/%m/%Y"),
+                                                                                              datetime.strftime(datafinal, "%H:%M de %d/%m/%Y"))})
+        # main
         if fields['tabela_grafico'] == "graph":
             self.grafico(console, datainicial, datafinal)
         else:
-            self.ajax_replace(fields, console)
+            # This will create a RefreshData.get call:
+            self.render("templates/ajax.html", fields)
 
-        self.response.out.write(self.formularios(fields))
-
-    def erros(self, erros):
-        erro_values = {"erros": erros}
-        erro = jinja_environment.get_template("templates/erro.html")
-        return erro.render(erro_values)
-
-    def erro_acesso(self):
-        erro_acesso = jinja_environment.get_template("templates/erro_acesso.html")
-        return erro_acesso.render()
-
-    def formularios(self, fields):
-        checkg = "false"
-        checkt = "true"
-        if fields['tabela_grafico'] == "graph":
-            checkg = "true"
-            checkt = "false"
-
+        # forms
         formularios_values = dict(fields)
+        formularios_values["checkg"] = fields['tabela_grafico'] and "true" or "false"
+        formularios_values["checkt"] = fields['tabela_grafico'] and "false" or "true"
 
-        formularios_values["checkg"] = checkg
-        formularios_values["checkt"] = checkt
-
-        formularios = jinja_environment.get_template(
-            "templates/formularios.html")
-
-        return formularios.render(formularios_values)
+        self.render("templates/formularios.html", formularios_values)
 
     def login(self, loged, datainicio, datafim, horainicio, horafim, tabela_grafico, turma, questoes):
         url = str(("/?trm=%s&di=%s&hi=%s&df=%s&hf=%s&tg=%s&qts=%s") %
@@ -186,37 +155,9 @@ class WebApp(webapp2.RequestHandler):
         self.response.out.write(navigation.render())
 
 
-class RefreshData(WebApp, webapp2.RequestHandler):
-
-    def tabela_submissoes(self, console, fieds, datainicial, datafinal, email, admin):
-        lista_submissoes_values = {
-            "alunos": console.turma_analisada,
-            "alunos_sessao": console.alunos_set,
-            "data_report": datetime.strftime(datainicial, "%d%m%Y"),
-            "dataf_report": datetime.strftime(datafinal, "%d%m%Y"),
-            "email": email,
-            "admin": admin
-        }
-        lista_submissoes = jinja_environment.get_template(
-            "templates/lista_submissoes.html")
-
-        self.response.out.write(lista_submissoes.render(lista_submissoes_values))
-
-    def tabela(self, console, fields, datainicial, datafinal, email, admin):
-        tabela_values = dict(fields)
-        tabela_values.update({
-            "lista_questoes": sorted(console.lista_questoes),
-            "alunos": console.turma_analisada,
-            "alunos_sessao": console.alunos_set,
-            "tabela_grafico": "graph",
-            "email": email,
-            "admin": admin
-        })
-        tabela_env = jinja_environment.get_template("templates/tabela.html")
-        self.response.out.write(tabela_env.render(tabela_values))
+class RefreshData(WebApp, util.AppRequestHandler):
 
     def get(self):
-
         user, is_adm, email = model.info(users.get_current_user())
         self.response.headers["Content-Type"] = "text/html; charset=utf-8"
         fields = Fields(self.request)
@@ -229,9 +170,26 @@ class RefreshData(WebApp, webapp2.RequestHandler):
 
         if console.lista_questoes:
             if fields['tabela_grafico'] == "table":
-                self.response.out.write(self.tabela(console, fields, datainicial, datafinal, email, is_adm))
+                values = dict(fields)
+                values.update({
+                    "lista_questoes": sorted(console.lista_questoes),
+                    "alunos": console.turma_analisada,
+                    "alunos_sessao": console.alunos_set,
+                    "tabela_grafico": "graph",
+                    "email": email,
+                    "admin": is_adm
+                })
+                self.render("templates/tabela.html", values)
         else:
-            self.tabela_submissoes(console, fields, datainicial, datafinal, email, is_adm)
+            values = {
+                "alunos": console.turma_analisada,
+                "alunos_sessao": console.alunos_set,
+                "data_report": datetime.strftime(datainicial, "%d%m%Y"),
+                "dataf_report": datetime.strftime(datafinal, "%d%m%Y"),
+                "email": email,
+                "admin": is_adm
+            }
+            self.render("templates/lista_submissoes.html", values)
 
 
 class Codigo(webapp2.RequestHandler):
