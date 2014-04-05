@@ -36,20 +36,17 @@ def trata_parametros(datainicio, horainicio, datafim, horafim, questoes):
     hoje = datetime.now() - timedelta(0, 3 * 3600)
     if not horainicio:
         if 8 <= hoje.hour <= 17:
-            horainicial = timedelta(
-                0, (hoje.hour - (hoje.hour % 2)) * 3600)
+            horainicial = timedelta(0, (hoje.hour - (hoje.hour % 2)) * 3600)
         else:
             horainicial = timedelta(0, 0)
     else:
-        hora = "%02d" % int(horainicio[0:2])
-        minutos = "%02d" % int(horainicio[2:4])
-        horainicial = timedelta(
-            0, (int(hora) * 3600) + (int(minutos) * 60))
+        hora = horainicio[0:2]
+        minutos = horainicio[2:4]
+        horainicial = timedelta(0, (int(hora) * 3600) + (int(minutos) * 60))
 
     """ Tratamento Parametro Hora Fim """
     if not horafim:
-        horafinal = timedelta(
-            0, (hoje.hour * 3600) + (hoje.minute * 60) + hoje.second)
+        horafinal = timedelta(0, (hoje.hour * 3600) + (hoje.minute * 60) + hoje.second)
     else:
         hora = horafim[0:2]
         minutos = horafim[2:4]
@@ -63,8 +60,7 @@ def trata_parametros(datainicio, horainicio, datafim, horafim, questoes):
 
     """ Tratamento Parametro Data Inicio """
     if not datainicio:
-        datainicial = datetime(
-            hoje.year, hoje.month, hoje.day) + horainicial
+        datainicial = datetime(hoje.year, hoje.month, hoje.day) + horainicial
     else:
         if horafim and not datafim:
             datainicial = datetime.strptime(datainicio, "%d%m%Y") + horainicial
@@ -78,62 +74,6 @@ def trata_parametros(datainicio, horainicio, datafim, horafim, questoes):
         questoes = []
 
     return datainicial, datafinal, questoes
-
-
-def checa_erros(datainicio, datafim, horainicio, horafim, tabela_grafico, turma):
-
-    erros = []
-    erro = False
-
-    if datainicio:
-        try:
-            datetime.strptime(datainicio, "%d%m%Y")
-        except ValueError:
-            erros.append("Data Inicial: " + datainicio)
-            erro = True
-    if datafim:
-        try:
-            datetime.strptime(datafim, "%d%m%Y")
-        except ValueError:
-            erros.append("Data Final: " + datafim)
-            erro = True
-    if horainicio:
-        try:
-            hora = "%02d" % int(horainicio[0:2])
-            minutos = "%02d" % int(horainicio[2:4])
-            timedelta(0, (int(hora) * 3600) + (int(minutos) * 60))  # hora_inicial
-        except ValueError:
-            erros.append("Hora Inicial: " + horainicio)
-            erro = True
-    if horafim:
-        try:
-            hora = horafim[0:2]
-            minutos = horafim[2:4]
-            timedelta(0, (int(hora) * 3600) + (int(minutos) * 60))  # hora_final
-        except ValueError:
-            erros.append("Hora Final: " + horafim)
-            erro = True
-    if tabela_grafico:
-        if tabela_grafico != "graph" and tabela_grafico != "table":
-            erros.append(u"Visualização: " + tabela_grafico)
-            erro = True
-    if turma:
-        # FIXME this search is wrong. Redo.
-        pass
-        #matriculas = model.create_matricula_email_dict()
-        #nome_igual = False
-        #for elemento in turma:
-        #    if elemento not in matriculas.keys() and elemento not in turmas:
-        #        nome_lista = elemento.split(" ")
-        #        for i in range(len(nomes)):
-        #            for j in range(len(nome_lista)):
-        #                if nomes[i][j] == nome_lista[j]:
-        #                    nome_igual = True
-        #        if not nome_igual:
-        #            erros.append("Turma/Matricula: " + elemento)
-        #            erro = True
-
-    return erro, erros
 
 
 class WebApp(webapp2.RequestHandler):
@@ -182,25 +122,19 @@ class WebApp(webapp2.RequestHandler):
         self.login(user is not None, fields['datainicio'], fields['datafim'], fields['horainicio'],
                    fields['horafim'], fields['tabela_grafico'], fields['turma'], fields['questoes'])
 
-        erro, erros = checa_erros(fields['datainicio'], fields['datafim'], fields['horainicio'],
-                                  fields['horafim'], fields['tabela_grafico'], fields['turma'])
+        datainicial, datafinal, lista_questoes = trata_parametros(fields['datainicio'], fields['horainicio'],
+                                                                  fields['datafim'], fields['horafim'],
+                                                                  fields['questoes'])
 
-        if erro:
-            self.response.out.write(self.erros(erros))
+        console = Console(datainicial, datafinal, fields['turma'], lista_questoes)
+
+        if not console.alunos_set:  # FIXME check this later.. what to do in an access error
+            self.response.out.write(self.erro_acesso())
+        self.cabecalho(datainicial, datafinal)
+        if fields['tabela_grafico'] == "graph":
+            self.grafico(console, datainicial, datafinal)
         else:
-            datainicial, datafinal, lista_questoes = trata_parametros(fields['datainicio'], fields['horainicio'],
-                                                                      fields['datafim'], fields['horafim'],
-                                                                      fields['questoes'])
-
-            console = Console(datainicial, datafinal, fields['turma'], lista_questoes)
-
-            if not console.alunos_set:  # FIXME check this later.. what to do in an access error
-                self.response.out.write(self.erro_acesso())
-            self.cabecalho(datainicial, datafinal)
-            if fields['tabela_grafico'] == "graph":
-                self.grafico(console, datainicial, datafinal)
-            else:
-                self.ajax_replace(fields, console)
+            self.ajax_replace(fields, console)
 
         self.response.out.write(self.formularios(fields))
 
