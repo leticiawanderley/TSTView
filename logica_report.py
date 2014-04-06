@@ -42,8 +42,8 @@ class Report_Logic():
         for student in matriculas:
             for submission in student.submissions:
                 if self._define_interval(submission.date, inicial_date, final_date)[0] and self._question_filter(question_list, submission.question):
-                    done[submission.question] = submission.success
-                    questions.append('- ' + submission.date.strftime("%H:%M %d/%m/%Y") + ' ' + submission.question + ' ' + submission.result)
+                    done[submission.question] = done.get(submission.question, False) or submission.success
+                    questions.append('- ' + submission.date.strftime("%Y-%m-%d %H:%M") + ' ' + submission.question + ' ' + submission.result)
 
         for q in self.questions:
             if q not in done:
