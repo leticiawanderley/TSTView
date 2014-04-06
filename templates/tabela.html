@@ -41,22 +41,13 @@
 						{% if questao not in aluno.questions %}
 							<td bgcolor="white"></td>
 						{% else %}
-							{% for q in aluno.submissions if q.question == questao %}
-								{% if q.success %}
-									{% if aluno.email == email or admin %}
-										<td style="cursor:pointer;cursor:hand" onClick="tooltip({{q.question}}, {{q.submission}}, {{q.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" align="center" bgcolor=#00FF00><b>{{q.submissao}}</b></td>
-									{% else %}
-										<td align="center" bgcolor=#00FF00><b>{{q.submissao}}</b></td>
-									{% endif %}
-								{% else %}
-									{% if aluno.email == email or admin %}
-										<td style="cursor:pointer;cursor:hand" onClick="tooltip({{q.question}}, {{q.submission}}, {{q.submissao_maxima}}, '{{aluno.name}}', {{aluno.matricula}}, '{{admin}}', '{{aluno.email}}')" align="center" bgcolor=#FF0000 ><b><font color="white">{{q.submissao}}</font></b></td>
-									{% else %}
-										<td align="center" bgcolor=#FF0000 ><b><font color="white">{{q.submission}}</font></b></td>
-									{% endif %}
-								{% endif %}
-								{% break %}
-							{% endfor %}
+                            {% set q = aluno.questions[questao] %}
+                            {% if q.success %}
+                                {% set color = '#00FF00' %}
+                            {% else %}
+                                {% set color = '#FF0000' %}
+                            {% endif %}
+                            <td align="center" bgcolor={{ color }}><b>{{q.submissions}}</b></td>
 						{% endif %}
 					{% endfor %}
 				</tr>

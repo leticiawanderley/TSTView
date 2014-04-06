@@ -79,17 +79,17 @@ def trata_parametros(datainicio, horainicio, datafim, horafim, questoes):
 
 class WebApp(util.AppRequestHandler):
 
-    def grafico(self, console, datainicial, datafinal):
+    def grafico(self, console, datainicial, datafinal, questao):
 
-        sumario = console.sumario_grafico()
+        alunos_ok, alunos_error, alunos_missing = console.sumario_grafico(questao)
         grafico_values = {
-            "certas": sumario[0],
-            "erradas": sumario[2],
-            "num_nao_fizeram": sumario[4],
-            "questao_sumarizada": sumario[6],
-            "fizeram_certo": sumario[1],
-            "fizeram_errado": sumario[3],
-            "nao_fizeram": sumario[5],
+            "certas": len(alunos_ok),
+            "erradas": len(alunos_error),
+            "num_nao_fizeram": len(alunos_missing),
+            "questao_sumarizada": questao,
+            "fizeram_certo": alunos_ok,
+            "fizeram_errado": alunos_error,
+            "nao_fizeram": alunos_missing,
             "data_report": datetime.strftime(datainicial, "%d%m%Y"),
             "dataf_report": datetime.strftime(datafinal, "%d%m%Y")
         }
@@ -121,7 +121,7 @@ class WebApp(util.AppRequestHandler):
                                                                                               datetime.strftime(datafinal, "%H:%M de %d/%m/%Y"))})
         # main
         if fields['tabela_grafico'] == "graph":
-            self.grafico(console, datainicial, datafinal)
+            self.grafico(console, datainicial, datafinal, lista_questoes[0])
         else:
             # This will create a RefreshData.get call:
             self.render("templates/ajax.html", fields)
@@ -172,7 +172,7 @@ class RefreshData(WebApp, util.AppRequestHandler):
             if fields['tabela_grafico'] == "table":
                 values = dict(fields)
                 values.update({
-                    "lista_questoes": sorted(console.lista_questoes),
+                    "lista_questoes": console.lista_questoes,
                     "alunos": console.turma_analisada,
                     "alunos_sessao": console.alunos_set,
                     "tabela_grafico": "graph",

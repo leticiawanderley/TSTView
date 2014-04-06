@@ -14,22 +14,17 @@ class Console():
         self.alunos_set = alunos.values()
         self.turma_analisada = model.search_name(alunos.values(), self.turmas, lista_matriculas)
 
-    def sumario_grafico(self):
+    def sumario_grafico(self, questao):
         # creating graphical summary of one question only
-        nao_fizeram = set()
-        fizeram_certo = set()
-        fizeram_errado = set()
+        nao_fizeram = []
+        fizeram_certo = []
+        fizeram_errado = []
         for aluno in self.turma_analisada:
-            if aluno not in self.alunos_set or self.lista_questoes[0] not in aluno.questions:
-                nao_fizeram.add(aluno)
-                continue
-            for submission in aluno.submissions:
-                if submission.question == self.lista_questoes[0]:
-                    if submission.success:
-                        if aluno not in fizeram_errado:
-                            fizeram_certo.add(aluno)
-                    else:
-                        if aluno not in fizeram_certo:
-                            fizeram_errado.add(aluno)
+            if questao not in aluno.questions:
+                nao_fizeram.append(aluno)
+            elif aluno.questions[questao].success:
+                fizeram_certo.append(aluno)
+            else:
+                fizeram_errado.append(aluno)
 
-        return [len(fizeram_certo), fizeram_certo, len(fizeram_errado), fizeram_errado, len(nao_fizeram), nao_fizeram, self.lista_questoes[0]]
+        return fizeram_certo, fizeram_errado, nao_fizeram

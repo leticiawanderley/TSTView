@@ -22,6 +22,7 @@ class Student(object):
         self.submissions.append(submission)
         question = self.questions.get(submission.question, Question(submission.question))
         question.submissions += 1
+        question.success = question.success or submission.success
         self.questions[submission.question] = question
         if submission.question not in questions:
             questions.append(submission.question)
@@ -45,6 +46,7 @@ class Question(object):
     def __init__(self, name):
         self.name = name
         self.submissions = 0
+        self.success = False
 
     def __eq__(self, other):
         return self.name == other.name
