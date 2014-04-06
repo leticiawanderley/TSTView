@@ -311,19 +311,19 @@ class Report_Logic():
         questions = {}  # questions that this student have done
         class_questions = {}  # questions that all students have done
 
-        for matricula, student in self.students.items():
-            for submission in student.submissions:
-                if submission.question not in class_questions:
-                    result = class_questions.get(submission.question, [0, submission.question, False])
-                    result[0] += 1
-                    class_questions[submission.question] = result
-                if submission.question not in questions:
-                    questions[submission.question] = [0, submission.question, False]
-                if student.matricula == current_student.matricula:
-                    if not submission.success:
-                        questions[submission.question][0] += 1
-                    else:
-                        questions[submission.question][2] = True
+        for question in self.questions:
+            questions[question] = [0, question, False]
+            class_questions[question] = [0, question, False]
+
+            for matricula, student in self.students.items():
+                class_questions[question][0] += 1
+
+        for question_name, question in current_student.questions.items():
+            if not question.success:
+                questions[question_name][0] += 1
+            else:
+                questions[question_name][2] = True
+
         top_student, not_sub = self._rank_submissions(questions)
         class_order = self._rank_submissions(class_questions)[0]
         top_class = {"done": [], "not_done": [], "merge": []}

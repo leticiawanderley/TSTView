@@ -65,73 +65,74 @@ class Report(webapp2.RequestHandler):
                 df = datetime.strptime(fields['df'], "%d%m%Y").date()
             else:
                 df = None
-
-            self.response.headers['Content-Type'] = 'text/html ; charset=utf-8'
-
-            if fields['questoes'] != '':
-                questoes = [str(questao).strip() for questao in fields['questoes'].split(',')]
-            else:
-                questoes = []
-
-            turma = []  # students to be analysed
-
-            if is_admin:
-                for matricula in [matricula.strip() for matricula in fields['matriculas'].split(',')]:
-                    if matricula in TURMAS_DEFAULT:
-                        turma.extend(report.classes[matricula].alunos)
-                    elif matricula in report.students:
-                        turma.append(report.students[matricula])
-            else:
-                for student in report.students.values():
-                    if student.email == email:
-                        turma = [student]
-                        break
-
-            # It's an admin:
-            if is_admin:
-                # Empty matriculas field:
-                if not fields['matriculas']:
-                    self.inicial_page(fields, report, data, df)
-                    return
-
-                # name searched is not one of the classes or students
-                # matriculas...
-                if not turma:
-                    self.alunos_pesquisados(report.search_name(fields['matriculas']), fields)
-                    return
-
-                # more than one student. First we create a summary...
-                if len(turma) > 1:
-                    self.imprime_sumarizacao(fields, report, turma, data, df)
-
-                # then we show stats for each student
-                for aluno in turma:
-                    geral, aula, naoaula, results = self.imprime_header(fields, report, turma, aluno, data, df, questoes)
-                    if len(questoes) > 0:
-                        self.filtro_questoes(report, questoes, geral)
-                    if len(turma) > 1:
-                        self.alunos_da_turma(fields, report, turma, aluno, geral)
-                    else:
-                        # TODO check this. FIXME
-                        self.resultados_grafico(fields, report, geral, aula, naoaula, aluno, data, df, questoes, results)
-                    self.form_aluno(fields, aluno)
-                    return
-
-            # It's a normal user:
-
-            # But it's empty... (we don't know this user)
-            if not turma:
-                self.not_logged()
-                return
-
-            matricula, aluno = turma[0].matricula, turma[0]
-            geral, aula, naoaula, results = self.imprime_header(fields, report, turma, aluno, data, df, questoes)
-            self.resultados_grafico(fields, report, geral, aula, naoaula, aluno, data, df, questoes, results)
-            self.form_aluno(fields, aluno)
         except ValueError:
             self.response.out.write(
                 u"""<p class="helvetica" style="text-align:center; font-size:30px; font-weight:bold; color:red">Parâmetro(s) de data inválido(s)""")
             self.inicial_page(fields, report, data, df)
+            return
+
+        self.response.headers['Content-Type'] = 'text/html ; charset=utf-8'
+
+        if fields['questoes'] != '':
+            questoes = [str(questao).strip() for questao in fields['questoes'].split(',')]
+        else:
+            questoes = []
+
+        turma = []  # students to be analysed
+
+        if is_admin:
+            for matricula in [matricula.strip() for matricula in fields['matriculas'].split(',')]:
+                if matricula in TURMAS_DEFAULT:
+                    turma.extend(report.classes[matricula].alunos)
+                elif matricula in report.students:
+                    turma.append(report.students[matricula])
+        else:
+            for student in report.students.values():
+                if student.email == email:
+                    turma = [student]
+                    break
+
+        # It's an admin:
+        if is_admin:
+            # Empty matriculas field:
+            if not fields['matriculas']:
+                self.inicial_page(fields, report, data, df)
+                return
+
+            # name searched is not one of the classes or students
+            # matriculas...
+            if not turma:
+                self.alunos_pesquisados(report.search_name(fields['matriculas']), fields)
+                return
+
+            # more than one student. First we create a summary...
+            if len(turma) > 1:
+                self.imprime_sumarizacao(fields, report, turma, data, df)
+
+            # then we show stats for each student
+            for aluno in turma:
+                geral, aula, naoaula, results = self.imprime_header(fields, report, turma, aluno, data, df, questoes)
+                if len(questoes) > 0:
+                    self.filtro_questoes(report, questoes, geral)
+                if len(turma) > 1:
+                    self.alunos_da_turma(fields, report, turma, aluno, geral)
+                else:
+                    # TODO check this. FIXME
+                    self.resultados_grafico(fields, report, geral, aula, naoaula, aluno, data, df, questoes, results)
+                self.form_aluno(fields, aluno)
+                return
+
+        # It's a normal user:
+
+        # But it's empty... (we don't know this user)
+        if not turma:
+            self.not_logged()
+            return
+
+        matricula, aluno = turma[0].matricula, turma[0]
+        geral, aula, naoaula, results = self.imprime_header(fields, report, turma, aluno, data, df, questoes)
+        self.resultados_grafico(fields, report, geral, aula, naoaula, aluno, data, df, questoes, results)
+        self.form_aluno(fields, aluno)
 
     # logged checks if it is logged in a google account (doesn't test for
     # authorization in our app)
