@@ -24,7 +24,7 @@
 		</table>
 		{% if not ehturma %}
 			<table class="mytable">
-				<tr><td width="250"><h3><p class="helvetica"><span style='padding-left:70px'>Questões certas:</span></p></h3></td>
+                <tr><td width="250"><h3><p class="helvetica"><span style='padding-left:70px'>Questões certas ({{ len_certas }}):</span></p></h3></td>
 				<td width="600">
 				<p class="helvetica" style="font-size: 13px"><br>{{q_certas}}</p></td>	
 				<td  width="600"><div class="diagnostico"><h3><p class="helvetica">Questões mais submetidas...</p></h3>
@@ -32,10 +32,10 @@
 				<b><span title="Pela turma e erradas pelo aluno">PTEA: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:10px'>{{done}}<br>
 				<b><span title="Pela turma e não enviadas pelo aluno">PTNTA: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:4px'>{{not_done}}<br>
 				<b><span title="Pela turma e não enviadas ou erradas pelo aluno">PTNEE: <img src="http://hivaidsclearinghouse.unesco.org/search/images/16x16/interrogation.png" width="10" height="10"></span></b><span style='padding-left:4px'>{{merge}}</p></div></td></tr>
-				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões erradas:</span></p></h3></td>
+        <tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões erradas ({{ len_erradas }}):</span></p></h3></td>
 				<td width="600">
 				<p class="helvetica" style="font-size: 13px"><br>{{q_erradas}}</p></td></tr>
-				<tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões não tentadas:</span></p></h3></td>
+        <tr><td><h3><p class="helvetica"><span style='padding-left:70px'>Questões não tentadas ({{ len_porfazer }}):</span></p></h3></td>
 				<td width="600">
 				<p class="helvetica" style="font-size: 13px"><br>{{porfazer}}</p></td>
 			

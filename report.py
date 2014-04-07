@@ -196,22 +196,27 @@ class Report(webapp2.RequestHandler):
         certas = ""
         erradas = ""
         geral, aula, naoaula, results = None, None, None, None
+        len_certas = 0
+        len_erradas = 0
+        len_porfazer = 0
 
         if len(turma) == 1:  # one student...
             geral, aula, naoaula = report.results_day(
                 turma, data, df, questoes, aluno.tp)[0:4]
             cabecalho = ["Aluno: " + aluno.name + " - " + aluno.matricula, u"Turma teórica: " + aluno.tt, u"Turma prática: " + aluno.tp]
             results = report.submissions_results(turma, data, df, questoes)
-
             for q in sorted(results[1]):
                 resolver += (3 - len(str(q))) * '0' + str(q) + " "
+                len_porfazer += 1
             for questao in sorted(results[2].keys()):
                 if results[2][questao]:
                     certas += (3 - len(str(questao))) * \
                         '0' + str(questao) + " "
+                    len_certas += 1
                 else:
                     erradas += (3 - len(str(questao))) * \
                         '0' + str(questao) + " "
+                    len_erradas += 1
 
             top_aluno, dic_turma = report.top_submited(aluno)[0:2]
             if len(dic_turma["done"]) > 5:
@@ -249,6 +254,9 @@ class Report(webapp2.RequestHandler):
             'porfazer': resolver,
             'ehturma': len(turma) > 1,
             'q_certas': certas,
+            'len_certas': len_certas,
+            'len_erradas': len_erradas,
+            'len_porfazer': len_porfazer,
             'q_erradas': erradas,
         }
         if len(turma) == 1:
