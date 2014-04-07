@@ -2,7 +2,6 @@ from datetime import datetime
 from collections import OrderedDict
 
 import data_source
-from util import cached
 
 class Student(object):
 
@@ -80,7 +79,6 @@ class Submission(object):
         self.success = self._test.success
         self.result = self._test.result
 
-@cached(time=300)
 def create_students_questions_and_classes(start_date=None, end_date=None):
     # TODO Cache this return -- specially submissions
     # FIXME Translate
